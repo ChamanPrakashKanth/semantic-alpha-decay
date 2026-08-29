@@ -23,3 +23,10 @@ def test_zero_relevant_is_causal_intervention():
     _, info = layer(torch.randn(2, 6, 32), intervention="zero_relevant",
                     query_positions=q, relevant_positions=r)
     assert torch.equal(info["survival"][torch.arange(2), :, q, r], torch.zeros(2, 4))
+
+
+def test_constrained_controller_is_low_capacity():
+    layer = SemanticDecayAttention(mode="constrained")
+    assert sum(p.numel() for p in layer.alpha_net.parameters()) == layer.d_head + 1
+    _, info = layer(torch.randn(2, 6, 32))
+    assert torch.all(info["alpha"] >= 0)

@@ -3,3 +3,4 @@ __pycache__/
 .pytest_cache/
 results/*.json
 !results/report.json
+!results/generalization_report.json

@@ -25,6 +25,9 @@ python train.py --workers 5                                       # five-seed su
 Results are written to `results/report.json`. The retained sandbox numbers below
 describe the original prototype, not the new counterfactual harness.
 
+The isolated-shift diagnosis is in `results/generalization_diagnosis.md`, with
+raw five-seed measurements in `results/generalization_report.json`.
+
 ---
 
 ## 1. Core idea

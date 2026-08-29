@@ -1,0 +1,1758 @@
+{
+  "question": "Does D_rel > D_irr remain true under isolated OOD shifts?",
+  "config": {
+    "seeds": 5,
+    "steps": 800,
+    "batch_size": 128,
+    "keep_penalty": 0.01,
+    "workers": 5,
+    "output": "results/generalization_report.json"
+  },
+  "cases": [
+    "unseen_combinations",
+    "unseen_layout",
+    "more_distractors",
+    "reversed_order",
+    "combined"
+  ],
+  "runs": [
+    {
+      "seed": 0,
+      "mode": "baseline",
+      "cases": {
+        "iid": {
+          "accuracy": 0.62109375,
+          "cross_entropy": 0.5800293236970901,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "unseen_combinations": {
+          "accuracy": 0.1083984375,
+          "cross_entropy": 5.166217267513275,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "unseen_layout": {
+          "accuracy": 0.5244140625,
+          "cross_entropy": 1.1977466717362404,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "more_distractors": {
+          "accuracy": 0.58203125,
+          "cross_entropy": 1.0972259789705276,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "reversed_order": {
+          "accuracy": 0.5546875,
+          "cross_entropy": 0.6988781318068504,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "combined": {
+          "accuracy": 0.21484375,
+          "cross_entropy": 4.665855944156647,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "mode": "constrained",
+      "cases": {
+        "iid": {
+          "accuracy": 0.6513671875,
+          "cross_entropy": 0.5604782924056053,
+          "D_rel": 0.9604499042034149,
+          "D_irr": 0.9615471661090851,
+          "delta_D": -0.001097261905670166,
+          "relevant_survival": 0.9604499042034149,
+          "irrelevant_survival": 0.9615471661090851
+        },
+        "unseen_combinations": {
+          "accuracy": 0.107421875,
+          "cross_entropy": 5.083125293254852,
+          "D_rel": 0.9609812721610069,
+          "D_irr": 0.9581097960472107,
+          "delta_D": 0.002871476113796234,
+          "relevant_survival": 0.9609812721610069,
+          "irrelevant_survival": 0.9581097960472107
+        },
+        "unseen_layout": {
+          "accuracy": 0.634765625,
+          "cross_entropy": 0.5761971995234489,
+          "D_rel": 0.9575319439172745,
+          "D_irr": 0.9580412283539772,
+          "delta_D": -0.0005092844367027283,
+          "relevant_survival": 0.9575319439172745,
+          "irrelevant_survival": 0.9580412283539772
+        },
+        "more_distractors": {
+          "accuracy": 0.5859375,
+          "cross_entropy": 0.9013618677854538,
+          "D_rel": 0.9518404826521873,
+          "D_irr": 0.9509458318352699,
+          "delta_D": 0.0008946508169174194,
+          "relevant_survival": 0.9518404826521873,
+          "irrelevant_survival": 0.9509458318352699
+        },
+        "reversed_order": {
+          "accuracy": 0.55859375,
+          "cross_entropy": 0.845238596200943,
+          "D_rel": 0.9645454585552216,
+          "D_irr": 0.9643471911549568,
+          "delta_D": 0.00019826740026474,
+          "relevant_survival": 0.9645454585552216,
+          "irrelevant_survival": 0.9643471911549568
+        },
+        "combined": {
+          "accuracy": 0.236328125,
+          "cross_entropy": 4.499461054801941,
+          "D_rel": 0.9488687589764595,
+          "D_irr": 0.9513538777828217,
+          "delta_D": -0.002485118806362152,
+          "relevant_survival": 0.9488687589764595,
+          "irrelevant_survival": 0.9513538777828217
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "mode": "fixed",
+      "cases": {
+        "iid": {
+          "accuracy": 0.666015625,
+          "cross_entropy": 0.5271023958921432,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "unseen_combinations": {
+          "accuracy": 0.09765625,
+          "cross_entropy": 5.21652889251709,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "unseen_layout": {
+          "accuracy": 0.5478515625,
+          "cross_entropy": 1.2023753970861435,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "more_distractors": {
+          "accuracy": 0.5263671875,
+          "cross_entropy": 1.3303008377552032,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "reversed_order": {
+          "accuracy": 0.525390625,
+          "cross_entropy": 0.9915852695703506,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "combined": {
+          "accuracy": 0.2373046875,
+          "cross_entropy": 4.430110216140747,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "mode": "learned",
+      "cases": {
+        "iid": {
+          "accuracy": 0.58984375,
+          "cross_entropy": 0.5873819142580032,
+          "D_rel": 0.6810428276658058,
+          "D_irr": 0.675610862672329,
+          "delta_D": 0.005431964993476868,
+          "relevant_survival": 0.6810428276658058,
+          "irrelevant_survival": 0.675610862672329
+        },
+        "unseen_combinations": {
+          "accuracy": 0.09765625,
+          "cross_entropy": 5.293961048126221,
+          "D_rel": 0.6860184669494629,
+          "D_irr": 0.705551840364933,
+          "delta_D": -0.019533373415470123,
+          "relevant_survival": 0.6860184669494629,
+          "irrelevant_survival": 0.705551840364933
+        },
+        "unseen_layout": {
+          "accuracy": 0.576171875,
+          "cross_entropy": 0.6501831561326981,
+          "D_rel": 0.6706031784415245,
+          "D_irr": 0.6708549708127975,
+          "delta_D": -0.00025179237127304077,
+          "relevant_survival": 0.6706031784415245,
+          "irrelevant_survival": 0.6708549708127975
+        },
+        "more_distractors": {
+          "accuracy": 0.5927734375,
+          "cross_entropy": 0.836534358561039,
+          "D_rel": 0.639181837439537,
+          "D_irr": 0.6212799325585365,
+          "delta_D": 0.01790190488100052,
+          "relevant_survival": 0.639181837439537,
+          "irrelevant_survival": 0.6212799325585365
+        },
+        "reversed_order": {
+          "accuracy": 0.572265625,
+          "cross_entropy": 0.6611873805522919,
+          "D_rel": 0.6154772713780403,
+          "D_irr": 0.6261189728975296,
+          "delta_D": -0.010641701519489288,
+          "relevant_survival": 0.6154772713780403,
+          "irrelevant_survival": 0.6261189728975296
+        },
+        "combined": {
+          "accuracy": 0.2236328125,
+          "cross_entropy": 4.571764290332794,
+          "D_rel": 0.6220528185367584,
+          "D_irr": 0.6386496052145958,
+          "delta_D": -0.016596786677837372,
+          "relevant_survival": 0.6220528185367584,
+          "irrelevant_survival": 0.6386496052145958
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "baseline",
+      "cases": {
+        "iid": {
+          "accuracy": 0.60546875,
+          "cross_entropy": 0.5970039144158363,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "unseen_combinations": {
+          "accuracy": 0.091796875,
+          "cross_entropy": 5.329082190990448,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "unseen_layout": {
+          "accuracy": 0.587890625,
+          "cross_entropy": 0.6287829577922821,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "more_distractors": {
+          "accuracy": 0.587890625,
+          "cross_entropy": 1.0205495804548264,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "reversed_order": {
+          "accuracy": 0.560546875,
+          "cross_entropy": 0.7728381305932999,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "combined": {
+          "accuracy": 0.22265625,
+          "cross_entropy": 4.1997082233428955,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "constrained",
+      "cases": {
+        "iid": {
+          "accuracy": 0.6240234375,
+          "cross_entropy": 0.586046889424324,
+          "D_rel": 0.9910931587219238,
+          "D_irr": 0.9908723086118698,
+          "delta_D": 0.0002208501100540161,
+          "relevant_survival": 0.9910931587219238,
+          "irrelevant_survival": 0.9908723086118698
+        },
+        "unseen_combinations": {
+          "accuracy": 0.0908203125,
+          "cross_entropy": 5.426933288574219,
+          "D_rel": 0.990358829498291,
+          "D_irr": 0.9924741312861443,
+          "delta_D": -0.002115301787853241,
+          "relevant_survival": 0.990358829498291,
+          "irrelevant_survival": 0.9924741312861443
+        },
+        "unseen_layout": {
+          "accuracy": 0.61328125,
+          "cross_entropy": 0.6477439701557159,
+          "D_rel": 0.9914729446172714,
+          "D_irr": 0.9896300211548805,
+          "delta_D": 0.0018429234623908997,
+          "relevant_survival": 0.9914729446172714,
+          "irrelevant_survival": 0.9896300211548805
+        },
+        "more_distractors": {
+          "accuracy": 0.587890625,
+          "cross_entropy": 1.0322615504264832,
+          "D_rel": 0.9825668856501579,
+          "D_irr": 0.9825578778982162,
+          "delta_D": 9.007751941680908e-06,
+          "relevant_survival": 0.9825668856501579,
+          "irrelevant_survival": 0.9825578778982162
+        },
+        "reversed_order": {
+          "accuracy": 0.544921875,
+          "cross_entropy": 0.8690872043371201,
+          "D_rel": 0.9936932921409607,
+          "D_irr": 0.9925333634018898,
+          "delta_D": 0.0011599287390708923,
+          "relevant_survival": 0.9936932921409607,
+          "irrelevant_survival": 0.9925333634018898
+        },
+        "combined": {
+          "accuracy": 0.185546875,
+          "cross_entropy": 4.569450497627258,
+          "D_rel": 0.9819421023130417,
+          "D_irr": 0.9833686724305153,
+          "delta_D": -0.0014265701174736023,
+          "relevant_survival": 0.9819421023130417,
+          "irrelevant_survival": 0.9833686724305153
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "fixed",
+      "cases": {
+        "iid": {
+          "accuracy": 0.5791015625,
+          "cross_entropy": 0.6043588519096375,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "unseen_combinations": {
+          "accuracy": 0.0888671875,
+          "cross_entropy": 5.340550661087036,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "unseen_layout": {
+          "accuracy": 0.5556640625,
+          "cross_entropy": 0.6311172097921371,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "more_distractors": {
+          "accuracy": 0.5576171875,
+          "cross_entropy": 1.0136293545365334,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "reversed_order": {
+          "accuracy": 0.583984375,
+          "cross_entropy": 0.644724927842617,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "combined": {
+          "accuracy": 0.2431640625,
+          "cross_entropy": 3.7966035902500153,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "learned",
+      "cases": {
+        "iid": {
+          "accuracy": 0.57421875,
+          "cross_entropy": 0.6010980904102325,
+          "D_rel": 0.6238605752587318,
+          "D_irr": 0.633863627910614,
+          "delta_D": -0.010003052651882172,
+          "relevant_survival": 0.6238605752587318,
+          "irrelevant_survival": 0.633863627910614
+        },
+        "unseen_combinations": {
+          "accuracy": 0.0859375,
+          "cross_entropy": 5.422990262508392,
+          "D_rel": 0.6478677839040756,
+          "D_irr": 0.6230150610208511,
+          "delta_D": 0.024852722883224487,
+          "relevant_survival": 0.6478677839040756,
+          "irrelevant_survival": 0.6230150610208511
+        },
+        "unseen_layout": {
+          "accuracy": 0.55859375,
+          "cross_entropy": 0.6874036341905594,
+          "D_rel": 0.6161767765879631,
+          "D_irr": 0.6242983788251877,
+          "delta_D": -0.008121602237224579,
+          "relevant_survival": 0.6161767765879631,
+          "irrelevant_survival": 0.6242983788251877
+        },
+        "more_distractors": {
+          "accuracy": 0.607421875,
+          "cross_entropy": 0.8652876988053322,
+          "D_rel": 0.6072829365730286,
+          "D_irr": 0.5984437763690948,
+          "delta_D": 0.008839160203933716,
+          "relevant_survival": 0.6072829365730286,
+          "irrelevant_survival": 0.5984437763690948
+        },
+        "reversed_order": {
+          "accuracy": 0.5673828125,
+          "cross_entropy": 0.6438444927334785,
+          "D_rel": 0.5455103069543839,
+          "D_irr": 0.5662495195865631,
+          "delta_D": -0.02073921263217926,
+          "relevant_survival": 0.5455103069543839,
+          "irrelevant_survival": 0.5662495195865631
+        },
+        "combined": {
+          "accuracy": 0.2431640625,
+          "cross_entropy": 4.262394964694977,
+          "D_rel": 0.6229834631085396,
+          "D_irr": 0.6303173527121544,
+          "delta_D": -0.007333889603614807,
+          "relevant_survival": 0.6229834631085396,
+          "irrelevant_survival": 0.6303173527121544
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "baseline",
+      "cases": {
+        "iid": {
+          "accuracy": 0.693359375,
+          "cross_entropy": 0.4970339685678482,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "unseen_combinations": {
+          "accuracy": 0.1103515625,
+          "cross_entropy": 5.512825071811676,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "unseen_layout": {
+          "accuracy": 0.568359375,
+          "cross_entropy": 1.3139966800808907,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "more_distractors": {
+          "accuracy": 0.55859375,
+          "cross_entropy": 1.4005755484104156,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "reversed_order": {
+          "accuracy": 0.5576171875,
+          "cross_entropy": 1.217547744512558,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "combined": {
+          "accuracy": 0.2333984375,
+          "cross_entropy": 4.547303378582001,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "constrained",
+      "cases": {
+        "iid": {
+          "accuracy": 0.716796875,
+          "cross_entropy": 0.48745138943195343,
+          "D_rel": 0.9955840334296227,
+          "D_irr": 0.9955561757087708,
+          "delta_D": 2.7857720851898193e-05,
+          "relevant_survival": 0.9955840334296227,
+          "irrelevant_survival": 0.9955561757087708
+        },
+        "unseen_combinations": {
+          "accuracy": 0.1298828125,
+          "cross_entropy": 5.4515597224235535,
+          "D_rel": 0.9955521523952484,
+          "D_irr": 0.9953087940812111,
+          "delta_D": 0.000243358314037323,
+          "relevant_survival": 0.9955521523952484,
+          "irrelevant_survival": 0.9953087940812111
+        },
+        "unseen_layout": {
+          "accuracy": 0.623046875,
+          "cross_entropy": 0.7038125172257423,
+          "D_rel": 0.9915467500686646,
+          "D_irr": 0.9913798347115517,
+          "delta_D": 0.00016691535711288452,
+          "relevant_survival": 0.9915467500686646,
+          "irrelevant_survival": 0.9913798347115517
+        },
+        "more_distractors": {
+          "accuracy": 0.62890625,
+          "cross_entropy": 0.9578097090125084,
+          "D_rel": 0.9833177253603935,
+          "D_irr": 0.9837386310100555,
+          "delta_D": -0.0004209056496620178,
+          "relevant_survival": 0.9833177253603935,
+          "irrelevant_survival": 0.9837386310100555
+        },
+        "reversed_order": {
+          "accuracy": 0.5341796875,
+          "cross_entropy": 1.4265032559633255,
+          "D_rel": 0.9962583482265472,
+          "D_irr": 0.9962733313441277,
+          "delta_D": -1.4983117580413818e-05,
+          "relevant_survival": 0.9962583482265472,
+          "irrelevant_survival": 0.9962733313441277
+        },
+        "combined": {
+          "accuracy": 0.189453125,
+          "cross_entropy": 5.005700349807739,
+          "D_rel": 0.9835634678602219,
+          "D_irr": 0.9807145372033119,
+          "delta_D": 0.0028489306569099426,
+          "relevant_survival": 0.9835634678602219,
+          "irrelevant_survival": 0.9807145372033119
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "fixed",
+      "cases": {
+        "iid": {
+          "accuracy": 0.685546875,
+          "cross_entropy": 0.5068749152123928,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "unseen_combinations": {
+          "accuracy": 0.1318359375,
+          "cross_entropy": 5.424986243247986,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "unseen_layout": {
+          "accuracy": 0.5712890625,
+          "cross_entropy": 1.1760452389717102,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "more_distractors": {
+          "accuracy": 0.5498046875,
+          "cross_entropy": 1.3636679202318192,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "reversed_order": {
+          "accuracy": 0.544921875,
+          "cross_entropy": 1.2268376499414444,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "combined": {
+          "accuracy": 0.232421875,
+          "cross_entropy": 3.9966615736484528,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "learned",
+      "cases": {
+        "iid": {
+          "accuracy": 0.828125,
+          "cross_entropy": 0.32318176701664925,
+          "D_rel": 0.592194028198719,
+          "D_irr": 0.5988303422927856,
+          "delta_D": -0.00663631409406662,
+          "relevant_survival": 0.592194028198719,
+          "irrelevant_survival": 0.5988303422927856
+        },
+        "unseen_combinations": {
+          "accuracy": 0.216796875,
+          "cross_entropy": 5.159007430076599,
+          "D_rel": 0.5973965674638748,
+          "D_irr": 0.5880956128239632,
+          "delta_D": 0.009300954639911652,
+          "relevant_survival": 0.5973965674638748,
+          "irrelevant_survival": 0.5880956128239632
+        },
+        "unseen_layout": {
+          "accuracy": 0.802734375,
+          "cross_entropy": 0.40902304276824,
+          "D_rel": 0.5624391064047813,
+          "D_irr": 0.5664556249976158,
+          "delta_D": -0.004016518592834473,
+          "relevant_survival": 0.5624391064047813,
+          "irrelevant_survival": 0.5664556249976158
+        },
+        "more_distractors": {
+          "accuracy": 0.6455078125,
+          "cross_entropy": 1.061199389398098,
+          "D_rel": 0.5575234591960907,
+          "D_irr": 0.5561875402927399,
+          "delta_D": 0.00133591890335083,
+          "relevant_survival": 0.5575234591960907,
+          "irrelevant_survival": 0.5561875402927399
+        },
+        "reversed_order": {
+          "accuracy": 0.5244140625,
+          "cross_entropy": 2.2067166566848755,
+          "D_rel": 0.44953038915991783,
+          "D_irr": 0.46677253022789955,
+          "delta_D": -0.01724214106798172,
+          "relevant_survival": 0.44953038915991783,
+          "irrelevant_survival": 0.46677253022789955
+        },
+        "combined": {
+          "accuracy": 0.193359375,
+          "cross_entropy": 5.445817530155182,
+          "D_rel": 0.5280537903308868,
+          "D_irr": 0.5468407571315765,
+          "delta_D": -0.018786966800689697,
+          "relevant_survival": 0.5280537903308868,
+          "irrelevant_survival": 0.5468407571315765
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "baseline",
+      "cases": {
+        "iid": {
+          "accuracy": 0.6220703125,
+          "cross_entropy": 0.5946320667862892,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "unseen_combinations": {
+          "accuracy": 0.09375,
+          "cross_entropy": 5.049786031246185,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "unseen_layout": {
+          "accuracy": 0.59375,
+          "cross_entropy": 0.7058580443263054,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "more_distractors": {
+          "accuracy": 0.583984375,
+          "cross_entropy": 0.9413754492998123,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "reversed_order": {
+          "accuracy": 0.607421875,
+          "cross_entropy": 0.7447264567017555,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "combined": {
+          "accuracy": 0.2255859375,
+          "cross_entropy": 3.645789384841919,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "constrained",
+      "cases": {
+        "iid": {
+          "accuracy": 0.6279296875,
+          "cross_entropy": 0.5946080088615417,
+          "D_rel": 0.9795653447508812,
+          "D_irr": 0.9795035272836685,
+          "delta_D": 6.1817467212677e-05,
+          "relevant_survival": 0.9795653447508812,
+          "irrelevant_survival": 0.9795035272836685
+        },
+        "unseen_combinations": {
+          "accuracy": 0.09765625,
+          "cross_entropy": 5.143687307834625,
+          "D_rel": 0.9800971373915672,
+          "D_irr": 0.9788873121142387,
+          "delta_D": 0.0012098252773284912,
+          "relevant_survival": 0.9800971373915672,
+          "irrelevant_survival": 0.9788873121142387
+        },
+        "unseen_layout": {
+          "accuracy": 0.603515625,
+          "cross_entropy": 0.6430265083909035,
+          "D_rel": 0.9738619029521942,
+          "D_irr": 0.9735781848430634,
+          "delta_D": 0.0002837181091308594,
+          "relevant_survival": 0.9738619029521942,
+          "irrelevant_survival": 0.9735781848430634
+        },
+        "more_distractors": {
+          "accuracy": 0.5693359375,
+          "cross_entropy": 1.0251316502690315,
+          "D_rel": 0.9642061293125153,
+          "D_irr": 0.9646712765097618,
+          "delta_D": -0.0004651471972465515,
+          "relevant_survival": 0.9642061293125153,
+          "irrelevant_survival": 0.9646712765097618
+        },
+        "reversed_order": {
+          "accuracy": 0.60546875,
+          "cross_entropy": 0.7641352042555809,
+          "D_rel": 0.9805287793278694,
+          "D_irr": 0.9807848408818245,
+          "delta_D": -0.0002560615539550781,
+          "relevant_survival": 0.9805287793278694,
+          "irrelevant_survival": 0.9807848408818245
+        },
+        "combined": {
+          "accuracy": 0.294921875,
+          "cross_entropy": 3.7206384539604187,
+          "D_rel": 0.9692879095673561,
+          "D_irr": 0.9666723757982254,
+          "delta_D": 0.002615533769130707,
+          "relevant_survival": 0.9692879095673561,
+          "irrelevant_survival": 0.9666723757982254
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "fixed",
+      "cases": {
+        "iid": {
+          "accuracy": 0.6103515625,
+          "cross_entropy": 0.5984639525413513,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "unseen_combinations": {
+          "accuracy": 0.0927734375,
+          "cross_entropy": 5.053515732288361,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "unseen_layout": {
+          "accuracy": 0.603515625,
+          "cross_entropy": 0.7300059720873833,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "more_distractors": {
+          "accuracy": 0.5771484375,
+          "cross_entropy": 0.9998600706458092,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "reversed_order": {
+          "accuracy": 0.603515625,
+          "cross_entropy": 0.7404041215777397,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "combined": {
+          "accuracy": 0.2666015625,
+          "cross_entropy": 3.2465738356113434,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "learned",
+      "cases": {
+        "iid": {
+          "accuracy": 0.6259765625,
+          "cross_entropy": 0.593219444155693,
+          "D_rel": 0.6804223582148552,
+          "D_irr": 0.698082223534584,
+          "delta_D": -0.01765986531972885,
+          "relevant_survival": 0.6804223582148552,
+          "irrelevant_survival": 0.698082223534584
+        },
+        "unseen_combinations": {
+          "accuracy": 0.0927734375,
+          "cross_entropy": 5.234173834323883,
+          "D_rel": 0.6402696818113327,
+          "D_irr": 0.6441162005066872,
+          "delta_D": -0.0038465186953544617,
+          "relevant_survival": 0.6402696818113327,
+          "irrelevant_survival": 0.6441162005066872
+        },
+        "unseen_layout": {
+          "accuracy": 0.607421875,
+          "cross_entropy": 0.6672719493508339,
+          "D_rel": 0.6713758334517479,
+          "D_irr": 0.6671028211712837,
+          "delta_D": 0.004273012280464172,
+          "relevant_survival": 0.6713758334517479,
+          "irrelevant_survival": 0.6671028211712837
+        },
+        "more_distractors": {
+          "accuracy": 0.5849609375,
+          "cross_entropy": 0.9525216370820999,
+          "D_rel": 0.6331409960985184,
+          "D_irr": 0.6249385923147202,
+          "delta_D": 0.008202403783798218,
+          "relevant_survival": 0.6331409960985184,
+          "irrelevant_survival": 0.6249385923147202
+        },
+        "reversed_order": {
+          "accuracy": 0.607421875,
+          "cross_entropy": 0.7809470444917679,
+          "D_rel": 0.6328516155481339,
+          "D_irr": 0.6358909159898758,
+          "delta_D": -0.0030393004417419434,
+          "relevant_survival": 0.6328516155481339,
+          "irrelevant_survival": 0.6358909159898758
+        },
+        "combined": {
+          "accuracy": 0.2626953125,
+          "cross_entropy": 3.8119162917137146,
+          "D_rel": 0.5685722939670086,
+          "D_irr": 0.5871671587228775,
+          "delta_D": -0.018594864755868912,
+          "relevant_survival": 0.5685722939670086,
+          "irrelevant_survival": 0.5871671587228775
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "baseline",
+      "cases": {
+        "iid": {
+          "accuracy": 0.71875,
+          "cross_entropy": 0.48018254339694977,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "unseen_combinations": {
+          "accuracy": 0.0908203125,
+          "cross_entropy": 5.947579562664032,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "unseen_layout": {
+          "accuracy": 0.6689453125,
+          "cross_entropy": 0.6312308385968208,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "more_distractors": {
+          "accuracy": 0.6240234375,
+          "cross_entropy": 0.8695167303085327,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "reversed_order": {
+          "accuracy": 0.5712890625,
+          "cross_entropy": 1.231651283800602,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        },
+        "combined": {
+          "accuracy": 0.12109375,
+          "cross_entropy": 5.274045884609222,
+          "D_rel": 1.0,
+          "D_irr": 1.0,
+          "delta_D": 0.0,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "constrained",
+      "cases": {
+        "iid": {
+          "accuracy": 0.6484375,
+          "cross_entropy": 0.5577817559242249,
+          "D_rel": 0.9852134436368942,
+          "D_irr": 0.9854249432682991,
+          "delta_D": -0.0002114996314048767,
+          "relevant_survival": 0.9852134436368942,
+          "irrelevant_survival": 0.9854249432682991
+        },
+        "unseen_combinations": {
+          "accuracy": 0.0859375,
+          "cross_entropy": 5.681607663631439,
+          "D_rel": 0.9863604828715324,
+          "D_irr": 0.9847381338477135,
+          "delta_D": 0.0016223490238189697,
+          "relevant_survival": 0.9863604828715324,
+          "irrelevant_survival": 0.9847381338477135
+        },
+        "unseen_layout": {
+          "accuracy": 0.61328125,
+          "cross_entropy": 0.5847092866897583,
+          "D_rel": 0.9814969524741173,
+          "D_irr": 0.9826041236519814,
+          "delta_D": -0.0011071711778640747,
+          "relevant_survival": 0.9814969524741173,
+          "irrelevant_survival": 0.9826041236519814
+        },
+        "more_distractors": {
+          "accuracy": 0.603515625,
+          "cross_entropy": 0.7162363156676292,
+          "D_rel": 0.9744599387049675,
+          "D_irr": 0.9741335660219193,
+          "delta_D": 0.0003263726830482483,
+          "relevant_survival": 0.9744599387049675,
+          "irrelevant_survival": 0.9741335660219193
+        },
+        "reversed_order": {
+          "accuracy": 0.5810546875,
+          "cross_entropy": 0.8731003701686859,
+          "D_rel": 0.9841480478644371,
+          "D_irr": 0.9844971522688866,
+          "delta_D": -0.0003491044044494629,
+          "relevant_survival": 0.9841480478644371,
+          "irrelevant_survival": 0.9844971522688866
+        },
+        "combined": {
+          "accuracy": 0.125,
+          "cross_entropy": 5.142397165298462,
+          "D_rel": 0.9743086472153664,
+          "D_irr": 0.97127515822649,
+          "delta_D": 0.0030334889888763428,
+          "relevant_survival": 0.9743086472153664,
+          "irrelevant_survival": 0.97127515822649
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "fixed",
+      "cases": {
+        "iid": {
+          "accuracy": 0.6513671875,
+          "cross_entropy": 0.5607590675354004,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "unseen_combinations": {
+          "accuracy": 0.0888671875,
+          "cross_entropy": 5.557738184928894,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "unseen_layout": {
+          "accuracy": 0.6064453125,
+          "cross_entropy": 0.6823436617851257,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "more_distractors": {
+          "accuracy": 0.603515625,
+          "cross_entropy": 0.8107470124959946,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "reversed_order": {
+          "accuracy": 0.5703125,
+          "cross_entropy": 1.0285040959715843,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        },
+        "combined": {
+          "accuracy": 0.1689453125,
+          "cross_entropy": 4.691910684108734,
+          "D_rel": 0.3678794205188751,
+          "D_irr": 0.3678794205188751,
+          "delta_D": 0.0,
+          "relevant_survival": 0.3678794205188751,
+          "irrelevant_survival": 0.3678794205188751
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "learned",
+      "cases": {
+        "iid": {
+          "accuracy": 0.6953125,
+          "cross_entropy": 0.4803086668252945,
+          "D_rel": 0.7109159454703331,
+          "D_irr": 0.7027429044246674,
+          "delta_D": 0.008173041045665741,
+          "relevant_survival": 0.7109159454703331,
+          "irrelevant_survival": 0.7027429044246674
+        },
+        "unseen_combinations": {
+          "accuracy": 0.08984375,
+          "cross_entropy": 5.776199162006378,
+          "D_rel": 0.6739954873919487,
+          "D_irr": 0.6812580525875092,
+          "delta_D": -0.007262565195560455,
+          "relevant_survival": 0.6739954873919487,
+          "irrelevant_survival": 0.6812580525875092
+        },
+        "unseen_layout": {
+          "accuracy": 0.6455078125,
+          "cross_entropy": 0.6918210759758949,
+          "D_rel": 0.6624080911278725,
+          "D_irr": 0.6561478450894356,
+          "delta_D": 0.00626024603843689,
+          "relevant_survival": 0.6624080911278725,
+          "irrelevant_survival": 0.6561478450894356
+        },
+        "more_distractors": {
+          "accuracy": 0.619140625,
+          "cross_entropy": 0.9184629768133163,
+          "D_rel": 0.6193335801362991,
+          "D_irr": 0.6209405288100243,
+          "delta_D": -0.0016069486737251282,
+          "relevant_survival": 0.6193335801362991,
+          "irrelevant_survival": 0.6209405288100243
+        },
+        "reversed_order": {
+          "accuracy": 0.541015625,
+          "cross_entropy": 1.6124313175678253,
+          "D_rel": 0.6514827534556389,
+          "D_irr": 0.640710636973381,
+          "delta_D": 0.010772116482257843,
+          "relevant_survival": 0.6514827534556389,
+          "irrelevant_survival": 0.640710636973381
+        },
+        "combined": {
+          "accuracy": 0.21484375,
+          "cross_entropy": 4.968583941459656,
+          "D_rel": 0.6102782636880875,
+          "D_irr": 0.607681468129158,
+          "delta_D": 0.0025967955589294434,
+          "relevant_survival": 0.6102782636880875,
+          "irrelevant_survival": 0.607681468129158
+        }
+      }
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "iid": {
+        "accuracy": {
+          "mean": 0.6521484375,
+          "std": 0.05045341896592898
+        },
+        "cross_entropy": {
+          "mean": 0.5497763633728028,
+          "std": 0.05653047254184472
+        },
+        "D_rel": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "unseen_combinations": {
+        "accuracy": {
+          "mean": 0.0990234375,
+          "std": 0.00953337098583264
+        },
+        "cross_entropy": {
+          "mean": 5.4010980248451235,
+          "std": 0.3517457787727568
+        },
+        "D_rel": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "unseen_layout": {
+        "accuracy": {
+          "mean": 0.588671875,
+          "std": 0.052468768321449304
+        },
+        "cross_entropy": {
+          "mean": 0.8955230385065078,
+          "std": 0.3329537358196386
+        },
+        "D_rel": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "more_distractors": {
+        "accuracy": {
+          "mean": 0.5873046875,
+          "std": 0.023514684107007345
+        },
+        "cross_entropy": {
+          "mean": 1.0658486574888228,
+          "std": 0.2056200618718451
+        },
+        "D_rel": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "reversed_order": {
+        "accuracy": {
+          "mean": 0.5703125,
+          "std": 0.021672208028488425
+        },
+        "cross_entropy": {
+          "mean": 0.9331283494830132,
+          "std": 0.2674283672963463
+        },
+        "D_rel": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "combined": {
+        "accuracy": {
+          "mean": 0.203515625,
+          "std": 0.04655141404049851
+        },
+        "cross_entropy": {
+          "mean": 4.466540563106537,
+          "std": 0.6006550782080194
+        },
+        "D_rel": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      }
+    },
+    "fixed": {
+      "iid": {
+        "accuracy": {
+          "mean": 0.6384765625,
+          "std": 0.043175770824379
+        },
+        "cross_entropy": {
+          "mean": 0.559511836618185,
+          "std": 0.04286926359193371
+        },
+        "D_rel": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "unseen_combinations": {
+        "accuracy": {
+          "mean": 0.1,
+          "std": 0.01815986174543411
+        },
+        "cross_entropy": {
+          "mean": 5.318663942813873,
+          "std": 0.19343932853303783
+        },
+        "D_rel": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "unseen_layout": {
+        "accuracy": {
+          "mean": 0.576953125,
+          "std": 0.02696090807010854
+        },
+        "cross_entropy": {
+          "mean": 0.8843774959445,
+          "std": 0.2806161735886582
+        },
+        "D_rel": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "more_distractors": {
+        "accuracy": {
+          "mean": 0.562890625,
+          "std": 0.029097629767825914
+        },
+        "cross_entropy": {
+          "mean": 1.103641039133072,
+          "std": 0.23645726190429692
+        },
+        "D_rel": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "reversed_order": {
+        "accuracy": {
+          "mean": 0.565625,
+          "std": 0.03099259220336974
+        },
+        "cross_entropy": {
+          "mean": 0.9264112129807472,
+          "std": 0.23391903498954084
+        },
+        "D_rel": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "combined": {
+        "accuracy": {
+          "mean": 0.2296875,
+          "std": 0.036398411508629915
+        },
+        "cross_entropy": {
+          "mean": 4.032371979951859,
+          "std": 0.5629226627960386
+        },
+        "D_rel": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "D_irr": {
+          "mean": 0.3678794205188751,
+          "std": 0.0
+        },
+        "delta_D": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      }
+    },
+    "learned": {
+      "iid": {
+        "accuracy": {
+          "mean": 0.6626953125,
+          "std": 0.10357917418432641
+        },
+        "cross_entropy": {
+          "mean": 0.5170379765331745,
+          "std": 0.11910841751164325
+        },
+        "D_rel": {
+          "mean": 0.657687146961689,
+          "std": 0.04829406847902849
+        },
+        "D_irr": {
+          "mean": 0.661825992166996,
+          "std": 0.0445226807212109
+        },
+        "delta_D": {
+          "mean": -0.004138845205307007,
+          "std": 0.010800777931235173
+        }
+      },
+      "unseen_combinations": {
+        "accuracy": {
+          "mean": 0.1166015625,
+          "std": 0.05617399378827359
+        },
+        "cross_entropy": {
+          "mean": 5.377266347408295,
+          "std": 0.24304848392827003
+        },
+        "D_rel": {
+          "mean": 0.649109597504139,
+          "std": 0.03440746955843543
+        },
+        "D_irr": {
+          "mean": 0.6484073534607887,
+          "std": 0.04649018548125709
+        },
+        "delta_D": {
+          "mean": 0.0007022440433502198,
+          "std": 0.01696167072198087
+        }
+      },
+      "unseen_layout": {
+        "accuracy": {
+          "mean": 0.6380859375,
+          "std": 0.09779677389553808
+        },
+        "cross_entropy": {
+          "mean": 0.6211405716836452,
+          "std": 0.11974133468641153
+        },
+        "D_rel": {
+          "mean": 0.6366005972027778,
+          "std": 0.0472984632299256
+        },
+        "D_irr": {
+          "mean": 0.6369719281792641,
+          "std": 0.04346497137806642
+        },
+        "delta_D": {
+          "mean": -0.00037133097648620603,
+          "std": 0.005893134243439118
+        }
+      },
+      "more_distractors": {
+        "accuracy": {
+          "mean": 0.6099609375,
+          "std": 0.02384692841589975
+        },
+        "cross_entropy": {
+          "mean": 0.9268012121319771,
+          "std": 0.08764410085066254
+        },
+        "D_rel": {
+          "mean": 0.6112925618886947,
+          "std": 0.03250775769785552
+        },
+        "D_irr": {
+          "mean": 0.6043580740690231,
+          "std": 0.028897508858089133
+        },
+        "delta_D": {
+          "mean": 0.0069344878196716305,
+          "std": 0.007579903298560429
+        }
+      },
+      "reversed_order": {
+        "accuracy": {
+          "mean": 0.5625,
+          "std": 0.03181705968290022
+        },
+        "cross_entropy": {
+          "mean": 1.1810253784060478,
+          "std": 0.6994660827898491
+        },
+        "D_rel": {
+          "mean": 0.578970467299223,
+          "std": 0.08271679497434602
+        },
+        "D_irr": {
+          "mean": 0.5871485151350498,
+          "std": 0.07363858511751183
+        },
+        "delta_D": {
+          "mean": -0.008178047835826874,
+          "std": 0.012565087436006634
+        }
+      },
+      "combined": {
+        "accuracy": {
+          "mean": 0.2275390625,
+          "std": 0.026574345359741753
+        },
+        "cross_entropy": {
+          "mean": 4.6120954036712645,
+          "std": 0.6297579433202635
+        },
+        "D_rel": {
+          "mean": 0.5903881259262562,
+          "std": 0.04129838454019487
+        },
+        "D_irr": {
+          "mean": 0.6021312683820724,
+          "std": 0.036877548062277325
+        },
+        "delta_D": {
+          "mean": -0.011743142455816268,
+          "std": 0.009289708756115891
+        }
+      }
+    },
+    "constrained": {
+      "iid": {
+        "accuracy": {
+          "mean": 0.6537109375,
+          "std": 0.037279881723240864
+        },
+        "cross_entropy": {
+          "mean": 0.5572732672095299,
+          "std": 0.042152786483367385
+        },
+        "D_rel": {
+          "mean": 0.9823811769485473,
+          "std": 0.013666980422355897
+        },
+        "D_irr": {
+          "mean": 0.9825808241963386,
+          "std": 0.013201155278988614
+        },
+        "delta_D": {
+          "mean": -0.0001996472477912903,
+          "std": 0.0005250697308312159
+        }
+      },
+      "unseen_combinations": {
+        "accuracy": {
+          "mean": 0.10234375,
+          "std": 0.01737897166134577
+        },
+        "cross_entropy": {
+          "mean": 5.357382655143738,
+          "std": 0.24480158738898705
+        },
+        "D_rel": {
+          "mean": 0.9826699748635292,
+          "std": 0.013376361150233405
+        },
+        "D_irr": {
+          "mean": 0.9819036334753036,
+          "std": 0.014787774015281035
+        },
+        "delta_D": {
+          "mean": 0.0007663413882255555,
+          "std": 0.0018667081945915177
+        }
+      },
+      "unseen_layout": {
+        "accuracy": {
+          "mean": 0.617578125,
+          "std": 0.011832133774110123
+        },
+        "cross_entropy": {
+          "mean": 0.6310978963971138,
+          "std": 0.052136333937384344
+        },
+        "D_rel": {
+          "mean": 0.9791820988059043,
+          "std": 0.014198078476832828
+        },
+        "D_irr": {
+          "mean": 0.9790466785430908,
+          "std": 0.013673904513813073
+        },
+        "delta_D": {
+          "mean": 0.0001354202628135681,
+          "std": 0.0011065971496865778
+        }
+      },
+      "more_distractors": {
+        "accuracy": {
+          "mean": 0.5951171875,
+          "std": 0.02243544749273388
+        },
+        "cross_entropy": {
+          "mean": 0.9265602186322213,
+          "std": 0.1291672659487443
+        },
+        "D_rel": {
+          "mean": 0.9712782323360443,
+          "std": 0.013326168760143876
+        },
+        "D_irr": {
+          "mean": 0.9712094366550446,
+          "std": 0.013671865095579824
+        },
+        "delta_D": {
+          "mean": 6.879568099975586e-05,
+          "std": 0.0005649910628604642
+        }
+      },
+      "reversed_order": {
+        "accuracy": {
+          "mean": 0.56484375,
+          "std": 0.028676704187146566
+        },
+        "cross_entropy": {
+          "mean": 0.955612926185131,
+          "std": 0.26687025678927373
+        },
+        "D_rel": {
+          "mean": 0.9838347852230072,
+          "std": 0.012596041125210865
+        },
+        "D_irr": {
+          "mean": 0.983687175810337,
+          "std": 0.012447700213259486
+        },
+        "delta_D": {
+          "mean": 0.0001476094126701355,
+          "std": 0.0006048693756958086
+        }
+      },
+      "combined": {
+        "accuracy": {
+          "mean": 0.20625,
+          "std": 0.06340290197235159
+        },
+        "cross_entropy": {
+          "mean": 4.587529504299164,
+          "std": 0.5572988365080016
+        },
+        "D_rel": {
+          "mean": 0.9715941771864891,
+          "std": 0.013959542653204326
+        },
+        "D_irr": {
+          "mean": 0.9706769242882729,
+          "std": 0.012763312291917793
+        },
+        "delta_D": {
+          "mean": 0.0009172528982162476,
+          "std": 0.0026534709163825113
+        }
+      }
+    }
+  }
+}

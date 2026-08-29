@@ -31,13 +31,14 @@ def evaluate(model, factory, split, batches=8, batch_size=128, intervention=None
                 g = info["survival"].mean(1)
                 rows = torch.arange(batch_size)
                 rel.append(g[rows, b.query_positions, b.relevant_positions].mean().item())
-                positions = torch.arange(b.tokens.shape[1])[None]
-                mask = (~b.padding_mask) & (positions <= b.query_positions[:, None])
-                mask[rows, b.relevant_positions] = False
-                mask[rows, b.query_positions] = False
-                irr.append(g[rows, b.query_positions][mask].mean().item())
+                irr.append(g[rows, b.query_positions, b.irrelevant_positions].mean().item())
+            else:
+                rel.append(1.0); irr.append(1.0)
     out = {"accuracy": correct / total, "cross_entropy": mean(losses)}
-    if rel: out.update(relevant_survival=mean(rel), irrelevant_survival=mean(irr))
+    if rel:
+        d_rel, d_irr = mean(rel), mean(irr)
+        out.update(D_rel=d_rel, D_irr=d_irr, delta_D=d_rel - d_irr,
+                   relevant_survival=d_rel, irrelevant_survival=d_irr)
     return out
 
 

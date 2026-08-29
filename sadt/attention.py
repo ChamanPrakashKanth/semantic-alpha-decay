@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-MODES = {"baseline", "learned", "renorm", "pre_softmax", "random", "fixed"}
+MODES = {"baseline", "learned", "constrained", "renorm", "pre_softmax", "random", "fixed"}
 
 
 class SemanticDecayAttention(nn.Module):
@@ -22,6 +22,9 @@ class SemanticDecayAttention(nn.Module):
             self.alpha_net = nn.Sequential(
                 nn.Linear(3 * self.d_head, alpha_hidden), nn.Tanh(), nn.Linear(alpha_hidden, 1)
             )
+        elif mode == "constrained":
+            # alpha_ij = softplus(w^T |q_i-k_j| + b), shared across heads.
+            self.alpha_net = nn.Linear(self.d_head, 1)
 
     def _alpha(self, q, k, generator=None):
         b, h, l, d = q.shape
@@ -31,6 +34,8 @@ class SemanticDecayAttention(nn.Module):
             return torch.ones(b, h, l, l, device=q.device)
         qi = q.unsqueeze(3).expand(-1, -1, -1, l, -1)
         kj = k.unsqueeze(2).expand(-1, -1, l, -1, -1)
+        if self.mode == "constrained":
+            return F.softplus(self.alpha_net((qi - kj).abs()).squeeze(-1))
         return F.softplus(self.alpha_net(torch.cat([qi, kj, qi * kj], -1)).squeeze(-1))
 
     def forward(self, x, exposure=1.0, padding_mask=None, intervention=None,
