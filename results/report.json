@@ -1,0 +1,1439 @@
+{
+  "config": {
+    "seeds": 5,
+    "steps": 800,
+    "batch_size": 128,
+    "keep_penalty": 0.01,
+    "modes": [
+      "baseline",
+      "learned",
+      "learned_no_penalty",
+      "random",
+      "fixed",
+      "renorm",
+      "pre_softmax"
+    ],
+    "output": "results/report.json",
+    "workers": 5
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "mode": "baseline",
+      "train_ce": 0.5898414850234985,
+      "train_regularizer": 0.0,
+      "iid": {
+        "accuracy": 0.62109375,
+        "cross_entropy": 0.5800293236970901
+      },
+      "ood": {
+        "accuracy": 0.142578125,
+        "cross_entropy": 4.721440553665161
+      }
+    },
+    {
+      "seed": 0,
+      "mode": "fixed",
+      "train_ce": 0.525452196598053,
+      "train_regularizer": 0.3678794205188751,
+      "iid": {
+        "accuracy": 0.666015625,
+        "cross_entropy": 0.5271023958921432,
+        "relevant_survival": 0.3678794205188751,
+        "irrelevant_survival": 0.3678794205188751
+      },
+      "ood": {
+        "accuracy": 0.2177734375,
+        "cross_entropy": 4.459105759859085,
+        "relevant_survival": 0.3678794205188751,
+        "irrelevant_survival": 0.3678794242441654
+      }
+    },
+    {
+      "seed": 0,
+      "mode": "learned",
+      "train_ce": 0.5949311852455139,
+      "train_regularizer": 0.09485626220703125,
+      "iid": {
+        "accuracy": 0.58984375,
+        "cross_entropy": 0.5873819142580032,
+        "relevant_survival": 0.6810428276658058,
+        "irrelevant_survival": 0.13158929161727428
+      },
+      "ood": {
+        "accuracy": 0.119140625,
+        "cross_entropy": 4.92691308259964,
+        "relevant_survival": 0.6384822949767113,
+        "irrelevant_survival": 0.10722705349326134
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 9.755859613418579,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.10478059016168118
+        },
+        "shuffle": {
+          "accuracy": 0.2041015625,
+          "cross_entropy": 4.640130639076233,
+          "relevant_survival": 0.3441578969359398,
+          "irrelevant_survival": 0.09611862897872925
+        },
+        "random": {
+          "accuracy": 0.193359375,
+          "cross_entropy": 4.654474377632141,
+          "relevant_survival": 0.5004737116396427,
+          "irrelevant_survival": 0.5005727522075176
+        },
+        "force_one": {
+          "accuracy": 0.11328125,
+          "cross_entropy": 4.496649384498596,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "mode": "learned_no_penalty",
+      "train_ce": 0.5909165143966675,
+      "train_regularizer": 0.4260382354259491,
+      "iid": {
+        "accuracy": 0.6171875,
+        "cross_entropy": 0.5765664502978325,
+        "relevant_survival": 0.8025147020816803,
+        "irrelevant_survival": 0.303070779889822
+      },
+      "ood": {
+        "accuracy": 0.1416015625,
+        "cross_entropy": 4.802416801452637,
+        "relevant_survival": 0.8106014728546143,
+        "irrelevant_survival": 0.34459977969527245
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 9.63070285320282,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.3437846563756466
+        },
+        "shuffle": {
+          "accuracy": 0.173828125,
+          "cross_entropy": 4.946377813816071,
+          "relevant_survival": 0.7660479545593262,
+          "irrelevant_survival": 0.42366211861371994
+        },
+        "random": {
+          "accuracy": 0.2021484375,
+          "cross_entropy": 4.829963505268097,
+          "relevant_survival": 0.5004737116396427,
+          "irrelevant_survival": 0.5005727522075176
+        },
+        "force_one": {
+          "accuracy": 0.1259765625,
+          "cross_entropy": 4.660306870937347,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "mode": "pre_softmax",
+      "train_ce": 0.3672274947166443,
+      "train_regularizer": 0.07572048902511597,
+      "iid": {
+        "accuracy": 0.7880859375,
+        "cross_entropy": 0.35708339884877205,
+        "relevant_survival": 0.49327870458364487,
+        "irrelevant_survival": 0.11723467987030745
+      },
+      "ood": {
+        "accuracy": 0.099609375,
+        "cross_entropy": 6.487533628940582,
+        "relevant_survival": 0.5101172998547554,
+        "irrelevant_survival": 0.08951672445982695
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 10.607763886451721,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.08832432609051466
+        },
+        "shuffle": {
+          "accuracy": 0.279296875,
+          "cross_entropy": 4.82356059551239,
+          "relevant_survival": 0.3381657935678959,
+          "irrelevant_survival": 0.0906356954947114
+        },
+        "random": {
+          "accuracy": 0.17578125,
+          "cross_entropy": 5.546409845352173,
+          "relevant_survival": 0.5004737116396427,
+          "irrelevant_survival": 0.5005727522075176
+        },
+        "force_one": {
+          "accuracy": 0.1416015625,
+          "cross_entropy": 5.706619143486023,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "mode": "random",
+      "train_ce": 0.6023692488670349,
+      "train_regularizer": 0.6316359043121338,
+      "iid": {
+        "accuracy": 0.6083984375,
+        "cross_entropy": 0.5941824316978455,
+        "relevant_survival": 0.6318275779485703,
+        "irrelevant_survival": 0.6293915361166
+      },
+      "ood": {
+        "accuracy": 0.119140625,
+        "cross_entropy": 4.2950007021427155,
+        "relevant_survival": 0.6296418458223343,
+        "irrelevant_survival": 0.632014587521553
+      }
+    },
+    {
+      "seed": 0,
+      "mode": "renorm",
+      "train_ce": 0.4234517812728882,
+      "train_regularizer": 0.07407322525978088,
+      "iid": {
+        "accuracy": 0.78515625,
+        "cross_entropy": 0.37070565298199654,
+        "relevant_survival": 0.5073523856699467,
+        "irrelevant_survival": 0.1242741048336029
+      },
+      "ood": {
+        "accuracy": 0.1064453125,
+        "cross_entropy": 6.626002550125122,
+        "relevant_survival": 0.501963522285223,
+        "irrelevant_survival": 0.096152582205832
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 10.677980303764343,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.09549709130078554
+        },
+        "shuffle": {
+          "accuracy": 0.25390625,
+          "cross_entropy": 5.117926836013794,
+          "relevant_survival": 0.3153721019625664,
+          "irrelevant_survival": 0.0936163505539298
+        },
+        "random": {
+          "accuracy": 0.162109375,
+          "cross_entropy": 5.841886222362518,
+          "relevant_survival": 0.5004737116396427,
+          "irrelevant_survival": 0.5005727522075176
+        },
+        "force_one": {
+          "accuracy": 0.1376953125,
+          "cross_entropy": 6.019934177398682,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "baseline",
+      "train_ce": 0.6102060675621033,
+      "train_regularizer": 0.0,
+      "iid": {
+        "accuracy": 0.60546875,
+        "cross_entropy": 0.5970039144158363
+      },
+      "ood": {
+        "accuracy": 0.203125,
+        "cross_entropy": 4.575474321842194
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "fixed",
+      "train_ce": 0.6076235771179199,
+      "train_regularizer": 0.3678794503211975,
+      "iid": {
+        "accuracy": 0.5791015625,
+        "cross_entropy": 0.6043588519096375,
+        "relevant_survival": 0.3678794205188751,
+        "irrelevant_survival": 0.3678794167935848
+      },
+      "ood": {
+        "accuracy": 0.2080078125,
+        "cross_entropy": 4.067855954170227,
+        "relevant_survival": 0.3678794205188751,
+        "irrelevant_survival": 0.367879431694746
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "learned",
+      "train_ce": 0.6146227121353149,
+      "train_regularizer": 0.15842725336551666,
+      "iid": {
+        "accuracy": 0.57421875,
+        "cross_entropy": 0.6010980904102325,
+        "relevant_survival": 0.6238605752587318,
+        "irrelevant_survival": 0.21590734459459782
+      },
+      "ood": {
+        "accuracy": 0.220703125,
+        "cross_entropy": 4.710683166980743,
+        "relevant_survival": 0.6239047646522522,
+        "irrelevant_survival": 0.17064399644732475
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0009765625,
+          "cross_entropy": 8.95100474357605,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.17038712464272976
+        },
+        "shuffle": {
+          "accuracy": 0.1767578125,
+          "cross_entropy": 5.063322186470032,
+          "relevant_survival": 0.3823059871792793,
+          "irrelevant_survival": 0.13918138854205608
+        },
+        "random": {
+          "accuracy": 0.2158203125,
+          "cross_entropy": 4.48361337184906,
+          "relevant_survival": 0.49739236757159233,
+          "irrelevant_survival": 0.5008087866008282
+        },
+        "force_one": {
+          "accuracy": 0.2138671875,
+          "cross_entropy": 4.712069571018219,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "learned_no_penalty",
+      "train_ce": 0.612261950969696,
+      "train_regularizer": 0.6171686053276062,
+      "iid": {
+        "accuracy": 0.572265625,
+        "cross_entropy": 0.6037931367754936,
+        "relevant_survival": 0.8350182697176933,
+        "irrelevant_survival": 0.5801259353756905
+      },
+      "ood": {
+        "accuracy": 0.20703125,
+        "cross_entropy": 4.541601002216339,
+        "relevant_survival": 0.8498796746134758,
+        "irrelevant_survival": 0.6302415803074837
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0009765625,
+          "cross_entropy": 8.629908084869385,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.6202952712774277
+        },
+        "shuffle": {
+          "accuracy": 0.1953125,
+          "cross_entropy": 4.941757440567017,
+          "relevant_survival": 0.8272679150104523,
+          "irrelevant_survival": 0.6253314465284348
+        },
+        "random": {
+          "accuracy": 0.2041015625,
+          "cross_entropy": 4.49257504940033,
+          "relevant_survival": 0.49739236757159233,
+          "irrelevant_survival": 0.5008087866008282
+        },
+        "force_one": {
+          "accuracy": 0.2158203125,
+          "cross_entropy": 4.628697872161865,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "pre_softmax",
+      "train_ce": 0.6025001406669617,
+      "train_regularizer": 0.04875342175364494,
+      "iid": {
+        "accuracy": 0.61328125,
+        "cross_entropy": 0.5747908651828766,
+        "relevant_survival": 0.3182687573134899,
+        "irrelevant_survival": 0.0645852442830801
+      },
+      "ood": {
+        "accuracy": 0.142578125,
+        "cross_entropy": 4.7407456040382385,
+        "relevant_survival": 0.2380703929811716,
+        "irrelevant_survival": 0.0317172990180552
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0107421875,
+          "cross_entropy": 8.800361514091492,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.03192998724989593
+        },
+        "shuffle": {
+          "accuracy": 0.2880859375,
+          "cross_entropy": 4.102827697992325,
+          "relevant_survival": 0.1425144523382187,
+          "irrelevant_survival": 0.06843478046357632
+        },
+        "random": {
+          "accuracy": 0.2841796875,
+          "cross_entropy": 4.519590616226196,
+          "relevant_survival": 0.49739236757159233,
+          "irrelevant_survival": 0.5008087866008282
+        },
+        "force_one": {
+          "accuracy": 0.26171875,
+          "cross_entropy": 4.596045434474945,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "random",
+      "train_ce": 0.6051627993583679,
+      "train_regularizer": 0.6330212354660034,
+      "iid": {
+        "accuracy": 0.587890625,
+        "cross_entropy": 0.6069176495075226,
+        "relevant_survival": 0.6337072998285294,
+        "irrelevant_survival": 0.6335393041372299
+      },
+      "ood": {
+        "accuracy": 0.146484375,
+        "cross_entropy": 4.041004657745361,
+        "relevant_survival": 0.628652349114418,
+        "irrelevant_survival": 0.6321772709488869
+      }
+    },
+    {
+      "seed": 1,
+      "mode": "renorm",
+      "train_ce": 0.6024947166442871,
+      "train_regularizer": 0.04875849559903145,
+      "iid": {
+        "accuracy": 0.6123046875,
+        "cross_entropy": 0.5747960060834885,
+        "relevant_survival": 0.3182656355202198,
+        "irrelevant_survival": 0.0645939139649272
+      },
+      "ood": {
+        "accuracy": 0.142578125,
+        "cross_entropy": 4.740678191184998,
+        "relevant_survival": 0.2380758821964264,
+        "irrelevant_survival": 0.03171863756142557
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0107421875,
+          "cross_entropy": 8.79635500907898,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.03193017281591892
+        },
+        "shuffle": {
+          "accuracy": 0.2880859375,
+          "cross_entropy": 4.102776199579239,
+          "relevant_survival": 0.1425232719630003,
+          "irrelevant_survival": 0.0684306975454092
+        },
+        "random": {
+          "accuracy": 0.2841796875,
+          "cross_entropy": 4.519583225250244,
+          "relevant_survival": 0.49739236757159233,
+          "irrelevant_survival": 0.5008087866008282
+        },
+        "force_one": {
+          "accuracy": 0.26171875,
+          "cross_entropy": 4.596026122570038,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "baseline",
+      "train_ce": 0.45105424523353577,
+      "train_regularizer": 0.0,
+      "iid": {
+        "accuracy": 0.693359375,
+        "cross_entropy": 0.4970339685678482
+      },
+      "ood": {
+        "accuracy": 0.1552734375,
+        "cross_entropy": 4.998609483242035
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "fixed",
+      "train_ce": 0.44103920459747314,
+      "train_regularizer": 0.3678794205188751,
+      "iid": {
+        "accuracy": 0.685546875,
+        "cross_entropy": 0.5068749152123928,
+        "relevant_survival": 0.3678794205188751,
+        "irrelevant_survival": 0.3678794205188751
+      },
+      "ood": {
+        "accuracy": 0.16796875,
+        "cross_entropy": 4.365819603204727,
+        "relevant_survival": 0.3678794205188751,
+        "irrelevant_survival": 0.3678794167935848
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "learned",
+      "train_ce": 0.33024218678474426,
+      "train_regularizer": 0.13836079835891724,
+      "iid": {
+        "accuracy": 0.828125,
+        "cross_entropy": 0.32318176701664925,
+        "relevant_survival": 0.592194028198719,
+        "irrelevant_survival": 0.1795976124703884
+      },
+      "ood": {
+        "accuracy": 0.1689453125,
+        "cross_entropy": 5.463548123836517,
+        "relevant_survival": 0.537632167339325,
+        "irrelevant_survival": 0.14771111495792866
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 10.03260338306427,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.14862259663641453
+        },
+        "shuffle": {
+          "accuracy": 0.1845703125,
+          "cross_entropy": 5.8696160316467285,
+          "relevant_survival": 0.3478757478296757,
+          "irrelevant_survival": 0.1962870266288519
+        },
+        "random": {
+          "accuracy": 0.15234375,
+          "cross_entropy": 5.824812829494476,
+          "relevant_survival": 0.4933095797896385,
+          "irrelevant_survival": 0.4997338429093361
+        },
+        "force_one": {
+          "accuracy": 0.1298828125,
+          "cross_entropy": 5.609457790851593,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "learned_no_penalty",
+      "train_ce": 0.31920868158340454,
+      "train_regularizer": 0.48019757866859436,
+      "iid": {
+        "accuracy": 0.828125,
+        "cross_entropy": 0.32004651613533497,
+        "relevant_survival": 0.7207584008574486,
+        "irrelevant_survival": 0.4263380356132984
+      },
+      "ood": {
+        "accuracy": 0.1982421875,
+        "cross_entropy": 5.042013049125671,
+        "relevant_survival": 0.7050175592303276,
+        "irrelevant_survival": 0.47645309194922447
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0107421875,
+          "cross_entropy": 9.189337015151978,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.47462427988648415
+        },
+        "shuffle": {
+          "accuracy": 0.208984375,
+          "cross_entropy": 5.52651971578598,
+          "relevant_survival": 0.6670356467366219,
+          "irrelevant_survival": 0.4773014970123768
+        },
+        "random": {
+          "accuracy": 0.146484375,
+          "cross_entropy": 5.780709147453308,
+          "relevant_survival": 0.4933095797896385,
+          "irrelevant_survival": 0.4997338429093361
+        },
+        "force_one": {
+          "accuracy": 0.1689453125,
+          "cross_entropy": 5.37639594078064,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "pre_softmax",
+      "train_ce": 0.36060038208961487,
+      "train_regularizer": 0.053375255316495895,
+      "iid": {
+        "accuracy": 0.81640625,
+        "cross_entropy": 0.35611187294125557,
+        "relevant_survival": 0.2807317487895489,
+        "irrelevant_survival": 0.06722543854266405
+      },
+      "ood": {
+        "accuracy": 0.140625,
+        "cross_entropy": 5.123847126960754,
+        "relevant_survival": 0.24815116450190544,
+        "irrelevant_survival": 0.03291865438222885
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 10.193663358688354,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.03201409708708525
+        },
+        "shuffle": {
+          "accuracy": 0.291015625,
+          "cross_entropy": 4.823174953460693,
+          "relevant_survival": 0.1510011274367571,
+          "irrelevant_survival": 0.04892135551199317
+        },
+        "random": {
+          "accuracy": 0.2744140625,
+          "cross_entropy": 4.894825994968414,
+          "relevant_survival": 0.4933095797896385,
+          "irrelevant_survival": 0.4997338429093361
+        },
+        "force_one": {
+          "accuracy": 0.2744140625,
+          "cross_entropy": 4.8806968331336975,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "random",
+      "train_ce": 0.5542447566986084,
+      "train_regularizer": 0.6315732002258301,
+      "iid": {
+        "accuracy": 0.5947265625,
+        "cross_entropy": 0.5953025445342064,
+        "relevant_survival": 0.6304870247840881,
+        "irrelevant_survival": 0.6332238167524338
+      },
+      "ood": {
+        "accuracy": 0.12109375,
+        "cross_entropy": 4.037895739078522,
+        "relevant_survival": 0.6338977590203285,
+        "irrelevant_survival": 0.6323879361152649
+      }
+    },
+    {
+      "seed": 2,
+      "mode": "renorm",
+      "train_ce": 0.34234413504600525,
+      "train_regularizer": 0.051652368158102036,
+      "iid": {
+        "accuracy": 0.8095703125,
+        "cross_entropy": 0.3652820773422718,
+        "relevant_survival": 0.27541449666023254,
+        "irrelevant_survival": 0.06589812878519297
+      },
+      "ood": {
+        "accuracy": 0.1455078125,
+        "cross_entropy": 5.251624524593353,
+        "relevant_survival": 0.24504033848643303,
+        "irrelevant_survival": 0.035435973666608334
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 10.194705247879028,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.03463971056044102
+        },
+        "shuffle": {
+          "accuracy": 0.2978515625,
+          "cross_entropy": 4.782731771469116,
+          "relevant_survival": 0.1461036130785942,
+          "irrelevant_survival": 0.0442016813904047
+        },
+        "random": {
+          "accuracy": 0.259765625,
+          "cross_entropy": 4.966587960720062,
+          "relevant_survival": 0.4933095797896385,
+          "irrelevant_survival": 0.4997338429093361
+        },
+        "force_one": {
+          "accuracy": 0.2568359375,
+          "cross_entropy": 4.9795849323272705,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "baseline",
+      "train_ce": 0.6153759956359863,
+      "train_regularizer": 0.0,
+      "iid": {
+        "accuracy": 0.6220703125,
+        "cross_entropy": 0.5946320667862892
+      },
+      "ood": {
+        "accuracy": 0.1640625,
+        "cross_entropy": 3.8951276242733
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "fixed",
+      "train_ce": 0.6181496381759644,
+      "train_regularizer": 0.3678794503211975,
+      "iid": {
+        "accuracy": 0.6103515625,
+        "cross_entropy": 0.5984639525413513,
+        "relevant_survival": 0.3678794205188751,
+        "irrelevant_survival": 0.3678794130682945
+      },
+      "ood": {
+        "accuracy": 0.216796875,
+        "cross_entropy": 3.388854056596756,
+        "relevant_survival": 0.3678794205188751,
+        "irrelevant_survival": 0.3678794279694557
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "learned",
+      "train_ce": 0.6150464415550232,
+      "train_regularizer": 0.10125937312841415,
+      "iid": {
+        "accuracy": 0.6259765625,
+        "cross_entropy": 0.593219444155693,
+        "relevant_survival": 0.6804223582148552,
+        "irrelevant_survival": 0.1338272336870432
+      },
+      "ood": {
+        "accuracy": 0.1494140625,
+        "cross_entropy": 4.024552285671234,
+        "relevant_survival": 0.6091393530368805,
+        "irrelevant_survival": 0.08908448927104473
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 9.489626049995422,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.08814315591007471
+        },
+        "shuffle": {
+          "accuracy": 0.23828125,
+          "cross_entropy": 3.992266923189163,
+          "relevant_survival": 0.3542642258107662,
+          "irrelevant_survival": 0.045378643088042736
+        },
+        "random": {
+          "accuracy": 0.2626953125,
+          "cross_entropy": 3.9736347794532776,
+          "relevant_survival": 0.5026318766176701,
+          "irrelevant_survival": 0.5020138025283813
+        },
+        "force_one": {
+          "accuracy": 0.15625,
+          "cross_entropy": 3.8207946121692657,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "learned_no_penalty",
+      "train_ce": 0.6161293983459473,
+      "train_regularizer": 0.45740386843681335,
+      "iid": {
+        "accuracy": 0.623046875,
+        "cross_entropy": 0.5947695523500443,
+        "relevant_survival": 0.8779160976409912,
+        "irrelevant_survival": 0.3383621573448181
+      },
+      "ood": {
+        "accuracy": 0.15234375,
+        "cross_entropy": 3.8916661143302917,
+        "relevant_survival": 0.8356306105852127,
+        "irrelevant_survival": 0.46882595121860504
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 9.313987374305725,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.46517905220389366
+        },
+        "shuffle": {
+          "accuracy": 0.234375,
+          "cross_entropy": 4.082301706075668,
+          "relevant_survival": 0.7814180552959442,
+          "irrelevant_survival": 0.469895601272583
+        },
+        "random": {
+          "accuracy": 0.2666015625,
+          "cross_entropy": 3.988395929336548,
+          "relevant_survival": 0.5026318766176701,
+          "irrelevant_survival": 0.5020138025283813
+        },
+        "force_one": {
+          "accuracy": 0.1572265625,
+          "cross_entropy": 3.891425460577011,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "pre_softmax",
+      "train_ce": 0.6148194074630737,
+      "train_regularizer": 0.03787257894873619,
+      "iid": {
+        "accuracy": 0.615234375,
+        "cross_entropy": 0.5949448123574257,
+        "relevant_survival": 0.31041302531957626,
+        "irrelevant_survival": 0.05687009356915951
+      },
+      "ood": {
+        "accuracy": 0.146484375,
+        "cross_entropy": 3.952648103237152,
+        "relevant_survival": 0.26941896602511406,
+        "irrelevant_survival": 0.027772576082497835
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 9.315955996513367,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.02686387882567942
+        },
+        "shuffle": {
+          "accuracy": 0.2490234375,
+          "cross_entropy": 3.5263921916484833,
+          "relevant_survival": 0.15955806709825993,
+          "irrelevant_survival": 0.017378886695951223
+        },
+        "random": {
+          "accuracy": 0.203125,
+          "cross_entropy": 3.803219646215439,
+          "relevant_survival": 0.5026318766176701,
+          "irrelevant_survival": 0.5020138025283813
+        },
+        "force_one": {
+          "accuracy": 0.1806640625,
+          "cross_entropy": 3.8680460155010223,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "random",
+      "train_ce": 0.5999497175216675,
+      "train_regularizer": 0.63162761926651,
+      "iid": {
+        "accuracy": 0.6103515625,
+        "cross_entropy": 0.6014924198389053,
+        "relevant_survival": 0.6327040269970894,
+        "irrelevant_survival": 0.6308390200138092
+      },
+      "ood": {
+        "accuracy": 0.1689453125,
+        "cross_entropy": 3.4843750298023224,
+        "relevant_survival": 0.6318273618817329,
+        "irrelevant_survival": 0.6315755397081375
+      }
+    },
+    {
+      "seed": 3,
+      "mode": "renorm",
+      "train_ce": 0.6148194670677185,
+      "train_regularizer": 0.03787272796034813,
+      "iid": {
+        "accuracy": 0.615234375,
+        "cross_entropy": 0.5949447974562645,
+        "relevant_survival": 0.31041425839066505,
+        "irrelevant_survival": 0.05687031988054514
+      },
+      "ood": {
+        "accuracy": 0.146484375,
+        "cross_entropy": 3.9526458084583282,
+        "relevant_survival": 0.2694198712706566,
+        "irrelevant_survival": 0.027772674337029457
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 9.315954208374023,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.026863980805501342
+        },
+        "shuffle": {
+          "accuracy": 0.2490234375,
+          "cross_entropy": 3.526390254497528,
+          "relevant_survival": 0.15955852717161179,
+          "irrelevant_survival": 0.017378946067765355
+        },
+        "random": {
+          "accuracy": 0.203125,
+          "cross_entropy": 3.8032177686691284,
+          "relevant_survival": 0.5026318766176701,
+          "irrelevant_survival": 0.5020138025283813
+        },
+        "force_one": {
+          "accuracy": 0.1806640625,
+          "cross_entropy": 3.868044435977936,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "baseline",
+      "train_ce": 0.47540515661239624,
+      "train_regularizer": 0.0,
+      "iid": {
+        "accuracy": 0.71875,
+        "cross_entropy": 0.48018254339694977
+      },
+      "ood": {
+        "accuracy": 0.1025390625,
+        "cross_entropy": 5.939044177532196
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "fixed",
+      "train_ce": 0.5770886540412903,
+      "train_regularizer": 0.3678794205188751,
+      "iid": {
+        "accuracy": 0.6513671875,
+        "cross_entropy": 0.5607590675354004,
+        "relevant_survival": 0.3678794205188751,
+        "irrelevant_survival": 0.3678794428706169
+      },
+      "ood": {
+        "accuracy": 0.126953125,
+        "cross_entropy": 5.129133522510529,
+        "relevant_survival": 0.3678794205188751,
+        "irrelevant_survival": 0.3678794167935848
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "learned",
+      "train_ce": 0.5084258317947388,
+      "train_regularizer": 0.09653695672750473,
+      "iid": {
+        "accuracy": 0.6953125,
+        "cross_entropy": 0.4803086668252945,
+        "relevant_survival": 0.7109159454703331,
+        "irrelevant_survival": 0.1419472172856331
+      },
+      "ood": {
+        "accuracy": 0.13671875,
+        "cross_entropy": 5.772861123085022,
+        "relevant_survival": 0.6353310868144035,
+        "irrelevant_survival": 0.11518277879804373
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 10.06625771522522,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.11587403994053602
+        },
+        "shuffle": {
+          "accuracy": 0.2236328125,
+          "cross_entropy": 4.896040141582489,
+          "relevant_survival": 0.3423636630177498,
+          "irrelevant_survival": 0.08362357132136822
+        },
+        "random": {
+          "accuracy": 0.1923828125,
+          "cross_entropy": 5.3147406578063965,
+          "relevant_survival": 0.5039730668067932,
+          "irrelevant_survival": 0.4985060431063175
+        },
+        "force_one": {
+          "accuracy": 0.15234375,
+          "cross_entropy": 5.305692136287689,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "learned_no_penalty",
+      "train_ce": 0.48255449533462524,
+      "train_regularizer": 0.6909094452857971,
+      "iid": {
+        "accuracy": 0.712890625,
+        "cross_entropy": 0.4847765900194645,
+        "relevant_survival": 0.8945463001728058,
+        "irrelevant_survival": 0.5610056966543198
+      },
+      "ood": {
+        "accuracy": 0.10546875,
+        "cross_entropy": 5.787334561347961,
+        "relevant_survival": 0.8530330657958984,
+        "irrelevant_survival": 0.5645952597260475
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 9.756738662719727,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.5637895986437798
+        },
+        "shuffle": {
+          "accuracy": 0.138671875,
+          "cross_entropy": 5.752206265926361,
+          "relevant_survival": 0.7392927333712578,
+          "irrelevant_survival": 0.6870859712362289
+        },
+        "random": {
+          "accuracy": 0.162109375,
+          "cross_entropy": 5.692253232002258,
+          "relevant_survival": 0.5039730668067932,
+          "irrelevant_survival": 0.4985060431063175
+        },
+        "force_one": {
+          "accuracy": 0.107421875,
+          "cross_entropy": 5.738401830196381,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "pre_softmax",
+      "train_ce": 0.5335872173309326,
+      "train_regularizer": 0.06423366069793701,
+      "iid": {
+        "accuracy": 0.6826171875,
+        "cross_entropy": 0.5288614071905613,
+        "relevant_survival": 0.6051273569464684,
+        "irrelevant_survival": 0.18331880122423172
+      },
+      "ood": {
+        "accuracy": 0.1181640625,
+        "cross_entropy": 5.298191487789154,
+        "relevant_survival": 0.45932915806770325,
+        "irrelevant_survival": 0.11448556557297707
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 9.537902355194092,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.11630585603415966
+        },
+        "shuffle": {
+          "accuracy": 0.19921875,
+          "cross_entropy": 4.860743820667267,
+          "relevant_survival": 0.18065907806158066,
+          "irrelevant_survival": 0.05453044828027487
+        },
+        "random": {
+          "accuracy": 0.1103515625,
+          "cross_entropy": 5.556446552276611,
+          "relevant_survival": 0.5039730668067932,
+          "irrelevant_survival": 0.4985060431063175
+        },
+        "force_one": {
+          "accuracy": 0.109375,
+          "cross_entropy": 5.705759227275848,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "random",
+      "train_ce": 0.609954297542572,
+      "train_regularizer": 0.6315272450447083,
+      "iid": {
+        "accuracy": 0.6376953125,
+        "cross_entropy": 0.5785082429647446,
+        "relevant_survival": 0.6311667710542679,
+        "irrelevant_survival": 0.6331716999411583
+      },
+      "ood": {
+        "accuracy": 0.123046875,
+        "cross_entropy": 4.772080779075623,
+        "relevant_survival": 0.633064329624176,
+        "irrelevant_survival": 0.6329474449157715
+      }
+    },
+    {
+      "seed": 4,
+      "mode": "renorm",
+      "train_ce": 0.5223392844200134,
+      "train_regularizer": 0.06994161754846573,
+      "iid": {
+        "accuracy": 0.66796875,
+        "cross_entropy": 0.5287359096109867,
+        "relevant_survival": 0.6471273228526115,
+        "irrelevant_survival": 0.18861089274287224
+      },
+      "ood": {
+        "accuracy": 0.12109375,
+        "cross_entropy": 5.37194436788559,
+        "relevant_survival": 0.513554822653532,
+        "irrelevant_survival": 0.129062139429152
+      },
+      "interventions": {
+        "zero_relevant": {
+          "accuracy": 0.0,
+          "cross_entropy": 9.620132565498352,
+          "relevant_survival": 0.0,
+          "irrelevant_survival": 0.13077526725828648
+        },
+        "shuffle": {
+          "accuracy": 0.201171875,
+          "cross_entropy": 4.894299864768982,
+          "relevant_survival": 0.21220997348427773,
+          "irrelevant_survival": 0.05902514886111021
+        },
+        "random": {
+          "accuracy": 0.109375,
+          "cross_entropy": 5.62177050113678,
+          "relevant_survival": 0.5039730668067932,
+          "irrelevant_survival": 0.4985060431063175
+        },
+        "force_one": {
+          "accuracy": 0.1044921875,
+          "cross_entropy": 5.766813278198242,
+          "relevant_survival": 1.0,
+          "irrelevant_survival": 1.0
+        }
+      }
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "iid_accuracy": {
+        "mean": 0.6521484375,
+        "std": 0.05045341896592898
+      },
+      "iid_cross_entropy": {
+        "mean": 0.5497763633728028,
+        "std": 0.05653047254184472
+      },
+      "ood_accuracy": {
+        "mean": 0.153515625,
+        "std": 0.03637875546080367
+      },
+      "ood_cross_entropy": {
+        "mean": 4.8259392321109775,
+        "std": 0.7431151541828949
+      }
+    },
+    "fixed": {
+      "iid_accuracy": {
+        "mean": 0.6384765625,
+        "std": 0.043175770824379
+      },
+      "iid_cross_entropy": {
+        "mean": 0.559511836618185,
+        "std": 0.04286926359193371
+      },
+      "iid_relevant_survival": {
+        "mean": 0.3678794205188751,
+        "std": 0.0
+      },
+      "iid_irrelevant_survival": {
+        "mean": 0.3678794227540493,
+        "std": 1.1662003280593848e-08
+      },
+      "ood_accuracy": {
+        "mean": 0.1875,
+        "std": 0.039505544152673405
+      },
+      "ood_cross_entropy": {
+        "mean": 4.282153779268265,
+        "std": 0.6323754049928444
+      },
+      "ood_relevant_survival": {
+        "mean": 0.3678794205188751,
+        "std": 0.0
+      },
+      "ood_irrelevant_survival": {
+        "mean": 0.36787942349910735,
+        "std": 6.664001874625056e-09
+      }
+    },
+    "learned": {
+      "iid_accuracy": {
+        "mean": 0.6626953125,
+        "std": 0.10357917418432641
+      },
+      "iid_cross_entropy": {
+        "mean": 0.5170379765331745,
+        "std": 0.11910841751164325
+      },
+      "iid_relevant_survival": {
+        "mean": 0.657687146961689,
+        "std": 0.04829406847902849
+      },
+      "iid_irrelevant_survival": {
+        "mean": 0.16057373993098736,
+        "std": 0.03649019292093992
+      },
+      "ood_accuracy": {
+        "mean": 0.158984375,
+        "std": 0.038997749068030156
+      },
+      "ood_cross_entropy": {
+        "mean": 4.979711556434632,
+        "std": 0.6801979941034934
+      },
+      "ood_relevant_survival": {
+        "mean": 0.6088979333639145,
+        "std": 0.04146691069159991
+      },
+      "ood_irrelevant_survival": {
+        "mean": 0.12596988659352065,
+        "std": 0.032774399784265405
+      },
+      "intervention_force_one_ood_accuracy": {
+        "mean": 0.153125,
+        "std": 0.03816972954022373
+      },
+      "intervention_random_ood_accuracy": {
+        "mean": 0.2033203125,
+        "std": 0.04030849703054343
+      },
+      "intervention_shuffle_ood_accuracy": {
+        "mean": 0.20546875,
+        "std": 0.025833723824123647
+      },
+      "intervention_zero_relevant_ood_accuracy": {
+        "mean": 0.0001953125,
+        "std": 0.0004367320268554277
+      }
+    },
+    "learned_no_penalty": {
+      "iid_accuracy": {
+        "mean": 0.670703125,
+        "std": 0.10171825496711338
+      },
+      "iid_cross_entropy": {
+        "mean": 0.515990449115634,
+        "std": 0.11932439069339709
+      },
+      "iid_relevant_survival": {
+        "mean": 0.8261507540941239,
+        "std": 0.06910579828198143
+      },
+      "iid_irrelevant_survival": {
+        "mean": 0.44178052097558973,
+        "std": 0.12602412146437625
+      },
+      "ood_accuracy": {
+        "mean": 0.1609375,
+        "std": 0.04195469801811253
+      },
+      "ood_cross_entropy": {
+        "mean": 4.81300630569458,
+        "std": 0.6936137907511759
+      },
+      "ood_relevant_survival": {
+        "mean": 0.8108324766159057,
+        "std": 0.061476359177764645
+      },
+      "ood_irrelevant_survival": {
+        "mean": 0.49694313257932665,
+        "std": 0.10812516045636962
+      },
+      "intervention_force_one_ood_accuracy": {
+        "mean": 0.155078125,
+        "std": 0.04184658623812887
+      },
+      "intervention_random_ood_accuracy": {
+        "mean": 0.1962890625,
+        "std": 0.04660464843355472
+      },
+      "intervention_shuffle_ood_accuracy": {
+        "mean": 0.190234375,
+        "std": 0.036240864622062864
+      },
+      "intervention_zero_relevant_ood_accuracy": {
+        "mean": 0.00234375,
+        "std": 0.004713874369588738
+      }
+    },
+    "pre_softmax": {
+      "iid_accuracy": {
+        "mean": 0.703125,
+        "std": 0.09522110356025297
+      },
+      "iid_cross_entropy": {
+        "mean": 0.48235847130417825,
+        "std": 0.1172753192842322
+      },
+      "iid_relevant_survival": {
+        "mean": 0.40156391859054563,
+        "std": 0.14115298252262404
+      },
+      "iid_irrelevant_survival": {
+        "mean": 0.09784685149788856,
+        "std": 0.0533957915365461
+      },
+      "ood_accuracy": {
+        "mean": 0.1294921875,
+        "std": 0.020032627195247007
+      },
+      "ood_cross_entropy": {
+        "mean": 5.120593190193176,
+        "std": 0.923100457879433
+      },
+      "ood_relevant_survival": {
+        "mean": 0.34501739628612993,
+        "std": 0.129287478196742
+      },
+      "ood_irrelevant_survival": {
+        "mean": 0.05928216390311718,
+        "std": 0.040028910624061
+      },
+      "intervention_force_one_ood_accuracy": {
+        "mean": 0.1935546875,
+        "std": 0.07269128754474025
+      },
+      "intervention_random_ood_accuracy": {
+        "mean": 0.2095703125,
+        "std": 0.07210907346056943
+      },
+      "intervention_shuffle_ood_accuracy": {
+        "mean": 0.261328125,
+        "std": 0.038500597267967604
+      },
+      "intervention_zero_relevant_ood_accuracy": {
+        "mean": 0.0021484375,
+        "std": 0.004804052295409705
+      }
+    },
+    "random": {
+      "iid_accuracy": {
+        "mean": 0.6078125,
+        "std": 0.019156562242561296
+      },
+      "iid_cross_entropy": {
+        "mean": 0.5952806577086449,
+        "std": 0.010683235027783239
+      },
+      "iid_relevant_survival": {
+        "mean": 0.631978540122509,
+        "std": 0.0012670159755510271
+      },
+      "iid_irrelevant_survival": {
+        "mean": 0.6320330753922463,
+        "std": 0.001829381990865866
+      },
+      "ood_accuracy": {
+        "mean": 0.1357421875,
+        "std": 0.02161713244255728
+      },
+      "ood_cross_entropy": {
+        "mean": 4.1260713815689085,
+        "std": 0.4670788895673102
+      },
+      "ood_relevant_survival": {
+        "mean": 0.6314167290925979,
+        "std": 0.002226585030281111
+      },
+      "ood_irrelevant_survival": {
+        "mean": 0.6322205558419227,
+        "std": 0.0005041642156552427
+      }
+    },
+    "renorm": {
+      "iid_accuracy": {
+        "mean": 0.698046875,
+        "std": 0.0937281265172811
+      },
+      "iid_cross_entropy": {
+        "mean": 0.4868928886950016,
+        "std": 0.11117741970993995
+      },
+      "iid_relevant_survival": {
+        "mean": 0.41171481981873514,
+        "std": 0.15979512075735605
+      },
+      "iid_irrelevant_survival": {
+        "mean": 0.10004947204142808,
+        "std": 0.056386629835067946
+      },
+      "ood_accuracy": {
+        "mean": 0.132421875,
+        "std": 0.01785534440929688
+      },
+      "ood_cross_entropy": {
+        "mean": 5.188579088449478,
+        "std": 0.9787658105053597
+      },
+      "ood_relevant_survival": {
+        "mean": 0.3536108873784542,
+        "std": 0.14125738513211328
+      },
+      "ood_irrelevant_survival": {
+        "mean": 0.06402840144000947,
+        "std": 0.04592732188563919
+      },
+      "intervention_force_one_ood_accuracy": {
+        "mean": 0.18828125,
+        "std": 0.07023243053829481
+      },
+      "intervention_random_ood_accuracy": {
+        "mean": 0.2037109375,
+        "std": 0.07114711896219758
+      },
+      "intervention_shuffle_ood_accuracy": {
+        "mean": 0.2580078125,
+        "std": 0.03814473626256991
+      },
+      "intervention_zero_relevant_ood_accuracy": {
+        "mean": 0.0021484375,
+        "std": 0.004804052295409705
+      }
+    }
+  }
+}

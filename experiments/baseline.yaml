@@ -1,0 +1,4 @@
+mode: baseline
+seeds: 5
+steps: 800
+batch_size: 128
