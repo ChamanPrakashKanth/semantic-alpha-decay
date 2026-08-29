@@ -1,0 +1,16 @@
+experiment: balanced_rsl
+seeds: 10
+steps: 800
+batch_size: 128
+base_lr: 0.003
+rsl_lr: 0.003
+lambda_p: 0.02
+num_slots: 4
+held_out_sector:
+  - 0.5235987755982988  # 30 deg
+  - 1.5707963267948966  # 90 deg
+reward_matrix:
+  W_to_R: 1.0
+  R_to_R: 1.0
+  R_to_W: -1.0
+  W_to_W: -1.0

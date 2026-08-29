@@ -5,3 +5,6 @@ results/*.json
 !results/report.json
 !results/generalization_report.json
 !results/recursive_report.json
+!results/gradient_rsl_report.json
+!results/balanced_rsl_report.json
+

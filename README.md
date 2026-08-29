@@ -1124,3 +1124,168 @@ Start tiny.
 If the gate does not learn semantic selectivity on the toy task, do not scale the model.
 
 Fix the mechanism first.
+
+---
+
+## 29. Gradient-Pattern Recursive Self-Learning
+
+### Overview & Hypothesis
+
+Ordinary supervised training computes loss $L_t = \text{CE}(y_t, \hat{y}_t)$ and backpropagation gradients $g_t = \nabla_\theta L_t$ solely to update model weights.
+
+**Gradient-Pattern Recursive Self-Learning (RSL)** tests whether backpropagation corrections can also provide a training signal for a secondary controller:
+
+$$
+(h, g, \text{gradient statistics}) \longrightarrow \text{RSL training target} \longrightarrow R_\phi(h, \text{context}) \longrightarrow \hat{\alpha}_{ij} \longrightarrow D_{ij} = e^{-\hat{\alpha}_{ij} T}
+$$
+
+The scientific question is:
+> *Can a secondary controller observe how backpropagation corrects a Transformer during training, learn recurring patterns of those corrections, and predict useful retention/decay decisions on unseen examples without access to labels or gradients at inference time?*
+
+---
+
+### Methodology & Teacher/Student Separation
+
+The experiment strictly separates training-time gradient observation from inference:
+
+1. **Phase A (Teacher Gradient Signal)**:
+   During supervised training on the base Transformer, the teacher extracts exact gradient sensitivity and counterfactual loss interventions:
+   $$s_{ij} = - \frac{\partial L}{\partial D_{ij}} = - \left\langle \frac{\partial L}{\partial \widetilde{A}_{ij}}, A_{ij} \right\rangle$$
+   $$\Delta L_{ij} = L_{\text{attenuated } j} - L_{\text{normal}}$$
+   - If $s_{ij} > 0$ (attenuation increases loss): Token $j$ is **useful** $\implies$ target $D^*_{ij} \to 1.0, \alpha^*_{ij} \to 0$.
+   - If $s_{ij} < 0$ (attenuation decreases loss): Token $j$ is **harmful** $\implies$ target $D^*_{ij} \to 0.0, \alpha^*_{ij} \gg 0$.
+   - The RSL controller $R_\phi$ is trained on detached inference activations $z_{ij} = [q_i, k_j, q_i \odot k_j, |q_i - k_j|, A_{ij}]$ to predict $D^*_{ij}$.
+
+2. **Phase B (Gradient-Free Inference)**:
+   At test time on validation/OOD examples, no ground-truth targets, loss values, or backpropagation passes are provided. The controller predicts $\hat{\alpha}_{ij} = \text{softplus}(-R_\phi(z_{ij}))$ directly from internal activations, applying:
+   $$\widetilde{A}_{ij} = A_{ij} e^{-\hat{\alpha}_{ij} T}$$
+
+3. **Multi-Pass Recursive Reasoning ($k \in \{1, 2, 3, 5\}$)**:
+   For pass $k$, updated internal states $h^{(k)}$ are fed through the controller:
+   $$h^{(k)} \longrightarrow R_\phi \longrightarrow \alpha^{(k)} \longrightarrow D^{(k)} = e^{-\alpha^{(k)} \Delta T} \longrightarrow h^{(k+1)}$$
+   Metrics track accuracy, selectivity $S_k = \mathbb{E}[D_{\text{useful}}^{(k)}] - \mathbb{E}[D_{\text{harmful}}^{(k)}]$, transition rates $P(\text{wrong} \to \text{right})$ vs $P(\text{right} \to \text{wrong})$, and wrong persistence (error loops).
+
+---
+
+### 5-Seed Benchmark Results
+
+Comprehensive evaluation over 5 deterministic seeds (800 steps, batch size 128, mean $\pm$ standard deviation):
+
+| Model | IID | Unseen Combinations | Unseen Layout | More Distractors | Reversed Order | Combined Shift |
+|---|---|---|---|---|---|---|
+| **Transformer Baseline** | .652 ± .050 | .099 ± .010 | .589 ± .052 | .587 ± .024 | .570 ± .022 | .204 ± .047 |
+| **Learned SADT ($\mathcal{L}_{\text{keep}}$)** | .671 ± .098 | .116 ± .064 | .651 ± .084 | .593 ± .028 | .561 ± .038 | .221 ± .032 |
+| **Fixed Decay ($D=e^{-1}$)** | .639 ± .047 | .099 ± .018 | .589 ± .018 | .549 ± .020 | .558 ± .030 | .237 ± .045 |
+| **Blind Recursive ($k=1 \to 5$)** | .611 $\to$ .616 | .093 $\to$ .094 | .608 $\to$ .608 | .600 $\to$ .597 | .569 $\to$ .567 | .170 $\to$ .170 |
+| **Gradient RSL ($k=1$)** | .648 ± .094 | .100 ± .025 | .594 ± .036 | .573 ± .025 | .566 ± .024 | .211 ± .072 |
+| **Gradient RSL ($k=5$)** | .474 ± .061 | .179 ± .060 | .414 ± .051 | .396 ± .075 | .432 ± .053 | .194 ± .044 |
+| **Random Controller ($k=1 \to 5$)** | .555 $\to$ .472 | .245 $\to$ .245 | .499 $\to$ .406 | .481 $\to$ .377 | .509 $\to$ .419 | .265 $\to$ .228 |
+| **Shuffled Target Controller ($k=5$)** | .471 ± .052 | .182 ± .065 | .407 ± .047 | .390 ± .092 | .431 ± .049 | .201 ± .055 |
+| **Oracle Controller (Upper Bound)** | **.788 ± .035** | **.123 ± .061** | **.690 ± .051** | **.630 ± .024** | **.658 ± .052** | **.263 ± .087** |
+
+---
+
+### Key Findings & Scientific Verdict
+
+1. **Oracle Upper Bound Proves Mechanism Validity**: When true supervised correction targets are provided at test time, post-softmax decay increases accuracy across all distribution shifts (+13.6% IID, +10.1% layout, +8.8% reversed order) and produces positive selectivity $\Delta D > 0$.
+2. **Gradient-Free Inference Fails to Generalize OOD**: Without true test labels/gradients, the RSL controller's predictions collapse to near-zero selectivity ($\Delta D \approx 0.0000$), behaving identically to the control baseline trained on scrambled/shuffled targets.
+3. **Self-Reinforcing Error Loops Under Recursion**: On structured reasoning splits, recursive passes through ungrounded decay degrade accuracy ($P(\text{right} \to \text{wrong}) \approx 25.6\% - 29.8\%$ vs $P(\text{wrong} \to \text{right}) \approx 11.2\% - 12.4\%$), as errors in pass 1 corrupt the inputs to subsequent passes.
+
+> **Scientific Conclusion**: **Negative / Falsification.**
+> Backpropagation provides rich supervised correction information, but a secondary controller observing training-time backpropagation cannot infer those corrections from internal activation patterns on unseen examples without supervision.
+
+---
+
+### Reproduction Commands
+
+```bash
+# Run unit tests verifying teacher/student isolation, oracle validity, and shuffled controls
+python -m pytest tests/test_gradient_rsl.py
+
+# Run full 5-seed Gradient-Pattern RSL experiment suite
+python gradient_rsl.py --seeds 5 --steps 800 --output results/gradient_rsl_report.json
+```
+
+See `results/gradient_rsl_diagnosis.md` for the full diagnostic breakdown and `results/gradient_rsl_report.json` for raw seed-level data.
+
+---
+
+## 30. Balanced Transition-Focused Reinforcement Learning (Transition RL)
+
+### Overview & Motivation
+
+Following the empirical findings of Gradient-Pattern RSL and the specifications in [`gradient_rsl_research_cookbook.md`](file:///c:/Users/user/Downloads/time%20pass/gradient_rsl_research_cookbook.md), this experiment transitions from supervised gradient-imitation to **Balanced Transition-Focused Reinforcement Learning** across a multi-task continuous angular rule manifold.
+
+The central hypothesis is:
+> *Balanced transition-based reinforcement learning can train an intervention-gated decay controller to rescue errors ($W \to R$) while preserving already-correct states ($R \to R$), transferring a self-correction policy to never-rewarded held-out task sectors without target leakage.*
+
+---
+
+### Dual-Head Architecture & Intervention Gating
+
+Rather than forcing a single decay scalar $\alpha$ to simultaneously determine *whether* and *how strongly* to intervene, the controller uses a **dual-head architecture**:
+
+1. **Intervention Decision Head**:
+   $$g_{ij} = \sigma(f_g(q_i, k_j, A_{ij}, \text{uncertainty})) \in [0, 1]$$
+2. **Decay Magnitude Head**:
+   $$\alpha_{ij} = \text{softplus}(f_\alpha(q_i, k_j, A_{ij}, \text{uncertainty})) \ge 0$$
+3. **Net Survival Factor**:
+   $$D_{ij} = (1 - g_{ij}) + g_{ij} \cdot e^{-\alpha_{ij} T}$$
+
+- When $g \approx 0 \implies D \approx 1.0$ (leave attention unchanged).
+- When $g \approx 1 \implies D \approx e^{-\alpha T}$ (apply selective semantic decay).
+
+Inference-available uncertainty features include max prediction probability $\max P(y)$, margin $P_{(1)} - P_{(2)}$, predictive entropy $H(P)$, and attention entropy. At test time on held-out sectors, **zero targets, loss values, or supervised gradients are accessible**.
+
+---
+
+### Balanced Transition Reward & Accounting Identity
+
+The policy is trained via policy gradient with a balanced transition reward matrix:
+$$R(W \to R) = +1.0 \quad (\text{Rescue}), \quad R(R \to R) = +1.0 \quad (\text{Preserve})$$
+$$R(R \to W) = -1.0 \quad (\text{Damage}), \quad R(W \to W) = -1.0 \quad (\text{Failure})$$
+
+with a preservation regularizer $\mathcal{L}_{\text{preserve}} = \lambda_p \cdot \mathbb{E}[g(1 - e^{-\alpha T})]$.
+
+The expected accuracy delta is strictly governed by the **Correction Accounting Identity**:
+$$\boxed{\Delta \text{Acc} = (1 - p)c - pd}$$
+where $p = P(\text{base correct})$, $c = P(W \to R \mid \text{wrong})$ (rescue rate), and $d = P(R \to W \mid \text{correct})$ (damage rate).
+
+---
+
+### 10-Seed Empirical Benchmark Results (800 Steps)
+
+| Metric | Seen Directions (Train Manifold) | Held-Out Sector (Never-Rewarded $[\pi/6, \pi/2]$) |
+|---|---|---|
+| **Base Model Accuracy ($p$)** | $94.22\% \pm 3.19\%$ | $93.87\% \pm 2.36\%$ |
+| **RSL-Corrected Accuracy** | $94.22\% \pm 3.19\%$ | $93.87\% \pm 2.36\%$ |
+| **Paired Transfer Delta ($\Delta_{\text{transfer}}$)** | $+0.0000 \pm 0.0000$ | $+0.0000 \pm 0.0000$ |
+| **Positive Transfer Rate ($\Delta > 0$)** | **0 / 10 seeds (0%)** | **0 / 10 seeds (0%)** |
+| **Rescue Rate ($c = P(W \to R)$)** | $0.0000$ | $0.0000$ |
+| **Damage Rate ($d = P(R \to W)$)** | $0.0000$ | $0.0000$ |
+| **Mean Intervention Gate ($g$)** | $0.0005 \pm 0.0010$ | $0.0005 \pm 0.0010$ |
+| **Mean Alpha ($\alpha$)** | $0.00027 \pm 0.00024$ | $0.00027 \pm 0.00024$ |
+| **Mean Net Survival ($D$)** | $0.5833 \pm 0.0000$ | $0.5833 \pm 0.0000$ |
+
+---
+
+### Key Diagnostic Takeaways
+
+1. **Statistical Falsification of Small-Sample Artifacts**: Preliminary 3-seed trials showed a noisy $+3.9\% \pm 4.2\%$ transfer delta. Tested over 10 deterministic seeds, the true transfer effect size is zero ($0 / 10$ seeds positive).
+2. **Base Model Dominance & The No-Op Policy Trap**: When base accuracy is high ($p \approx 94\%$), the accounting identity requires $\frac{c}{d} > \frac{0.94}{0.06} \approx 15.7\times$ rescue-to-damage ratio to gain net accuracy. The RL policy gradient converges to an inactive no-op controller ($g \to 0$), as the penalty of corrupting correct states outweighs the opportunity to rescue rare errors.
+
+---
+
+### Reproduction Commands
+
+```bash
+# Run unit tests and zero-leakage audit
+python -m pytest tests/test_balanced_rsl.py
+
+# Run full 10-seed Balanced Transition RL benchmark
+python balanced_rsl.py --seeds 10 --steps 800 --output results/balanced_rsl_report.json --csv-output results/balanced_rsl_seed_table.csv
+```
+
+See `results/balanced_rsl_diagnosis.md` for the complete diagnosis and `results/balanced_rsl_seed_table.csv` for per-seed measurements.
+
+

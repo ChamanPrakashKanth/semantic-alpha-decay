@@ -1,0 +1,12 @@
+experiment: gradient_rsl
+seeds: 5
+steps: 800
+batch_size: 128
+rsl_lr: 0.003
+base_lr: 0.003
+keep_penalty: 0.01
+k_passes:
+  - 1
+  - 2
+  - 3
+  - 5
