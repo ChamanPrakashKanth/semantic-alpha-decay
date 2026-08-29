@@ -28,6 +28,9 @@ describe the original prototype, not the new counterfactual harness.
 The isolated-shift diagnosis is in `results/generalization_diagnosis.md`, with
 raw five-seed measurements in `results/generalization_report.json`.
 
+The one-step recursive self-output experiment is summarized in
+`results/recursive_diagnosis.md`, with raw data in `results/recursive_report.json`.
+
 ---
 
 ## 1. Core idea

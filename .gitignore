@@ -4,3 +4,4 @@ __pycache__/
 results/*.json
 !results/report.json
 !results/generalization_report.json
+!results/recursive_report.json
