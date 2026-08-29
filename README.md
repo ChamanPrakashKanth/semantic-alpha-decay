@@ -1288,4 +1288,74 @@ python balanced_rsl.py --seeds 10 --steps 800 --output results/balanced_rsl_repo
 
 See `results/balanced_rsl_diagnosis.md` for the complete diagnosis and `results/balanced_rsl_seed_table.csv` for per-seed measurements.
 
+---
+
+## 31. Phase 2: Controlled Base Competence & Autonomous Teacher-Free Recursion
+
+### Overview & Metric Audit
+
+Phase 2 resolves the code audit on effective survival and tests two critical hypotheses:
+1. **Competence Sweep**: Does RSL learn useful correction rather than abstention when base competence is calibrated across $p \in \{0.50, 0.60, 0.70, 0.80, 0.90, 0.95\}$?
+2. **Autonomous Teacher-Free Recursion**: Once the external RL reward teacher is removed, can the learned internal dynamics autonomously produce recursive self-correction ($k \in \{1, 2, 3, 5\}$), or does recursion without supervision amplify errors?
+
+**Metric Audit**: In previous reports, global tensor averaging of $D$ included the upper-triangular causal mask ($21/36 = 0.5833$). Audited metrics isolate valid unmasked positions:
+- Mean gate: $g \approx 0.0005$
+- Mean effective survival: $D_{\text{eff}} = (1 - g) + g \cdot e^{-\alpha T} = 1.0000$ (exact abstention verification).
+
+---
+
+### Controlled Competence Sweep Results (60 Runs: 6 Levels $\times$ 10 Seeds)
+
+| Base Competence ($p$) | Test Base Acc | Test RSL Acc | Transfer $\Delta$ | Mean Gate ($g$) | Effective Survival ($D_{\text{eff}}$) | Oracle Headroom ($H(p)$) |
+|---|---|---|---|---|---|---|
+| **$p \approx 0.50$** (Step 30) | $24.96\% \pm 1.34\%$ | $24.96\% \pm 1.34\%$ | $+0.0000$ | $0.0024$ | $1.0000$ | $+6.86\%$ |
+| **$p \approx 0.60$** (Step 60) | $20.80\% \pm 6.18\%$ | $20.80\% \pm 6.18\%$ | $+0.0000$ | $0.0028$ | $1.0000$ | $+11.39\%$ |
+| **$p \approx 0.70$** (Step 120) | $44.92\% \pm 20.9\%$ | $44.92\% \pm 20.9\%$ | $+0.0000$ | $0.0023$ | $1.0000$ | $+18.00\%$ |
+| **$p \approx 0.80$** (Step 220) | $87.05\% \pm 8.75\%$ | $87.05\% \pm 8.75\%$ | $+0.0000$ | $0.0020$ | $1.0000$ | $+6.95\%$ |
+| **$p \approx 0.90$** (Step 450) | $91.80\% \pm 3.91\%$ | $91.80\% \pm 3.91\%$ | $+0.0000$ | $0.0021$ | $1.0000$ | $+5.89\%$ |
+| **$p \approx 0.95$** (Step 800) | $93.09\% \pm 3.42\%$ | $93.09\% \pm 3.42\%$ | $+0.0000$ | $0.0019$ | $1.0000$ | $+5.09\%$ |
+
+Across all competence levels, single-pass RSL on frozen base models converges to rational abstention ($g \to 0, D_{\text{eff}} \to 1.0$).
+
+---
+
+### Autonomous Teacher-Free Recursion Results ($k=1 \to 5$ Passes, 10 Seeds)
+
+When the external RL reward teacher is removed and internal representations are iteratively refined:
+
+| Pass ($k$) | Mean Accuracy | Step Delta | Cumulative $\Delta$ | Rescue Rate ($c_k$) | Damage Rate ($d_k$) | Damage / Rescue Ratio | Error Loop Rate |
+|---|---|---|---|---|---|---|---|
+| **Pass 1 ($k=1$)** | $44.84\% \pm 22.0\%$ | $+0.00\%$ | $+0.00\%$ | $0.00\%$ | $0.00\%$ | $-$ | $0.00$ |
+| **Pass 2 ($k=2$)** | $32.85\% \pm 8.03\%$ | $-11.98\%$ | $-11.98\%$ | $21.49\%$ | **$56.31\%$** | **$2.62\times$** | **$0.80$ (80%)** |
+| **Pass 3 ($k=3$)** | $35.50\% \pm 12.1\%$ | $+2.65\%$ | $-9.34\%$ | $17.17\%$ | $23.81\%$ | $1.39\times$ | $0.20$ (20%) |
+| **Pass 4 ($k=4$)** | $33.34\% \pm 7.95\%$ | $-2.16\%$ | $-11.49\%$ | $10.26\%$ | $21.22\%$ | $2.07\times$ | $0.40$ (40%) |
+| **Pass 5 ($k=5$)** | $34.52\% \pm 9.41\%$ | $+1.18\%$ | $-10.31\%$ | $8.59\%$ | $11.09\%$ | $1.29\times$ | $0.20$ (20%) |
+
+---
+
+### Scientific Verdict
+
+1. **Training RSL with RL is External Supervision, Not Self-Learning**:
+   The RL controller's training relies entirely on external reward signals derived from true ground-truth targets $y$.
+2. **Autonomous Recursion Amplifies Errors**:
+   Once the external reward teacher is removed, recursive state feedback without ground-truth verification damages correct representations ($d_2 = 56.31\%$) at more than $2.6\times$ the rate it rescues errors ($c_2 = 21.49\%$), collapsing accuracy by $-11.98\%$ and triggering self-reinforcing error loops in 80% of seeds.
+
+---
+
+### Reproduction Commands
+
+```bash
+# Run unit tests for competence sweep and autonomous recursion
+python -m pytest tests/test_controlled_competence_rsl.py tests/test_autonomous_recursive.py
+
+# Run controlled competence sweep
+python controlled_competence_rsl.py --seeds 10 --rsl-steps 400
+
+# Run autonomous teacher-free multi-pass recursion test
+python autonomous_recursive_test.py --seeds 10 --k-passes 5 --competence-p 0.70
+```
+
+See `results/controlled_competence_diagnosis.md` for the full diagnostic breakdown.
+
+
 

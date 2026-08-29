@@ -7,4 +7,7 @@ results/*.json
 !results/recursive_report.json
 !results/gradient_rsl_report.json
 !results/balanced_rsl_report.json
+!results/controlled_competence_report.json
+!results/autonomous_recursion_report.json
+
 
