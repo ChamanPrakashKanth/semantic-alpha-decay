@@ -1,0 +1,57 @@
+{
+  "gru": {
+    "accuracy": 1.0,
+    "loss": 0.00197166227735579,
+    "passed": true
+  },
+  "linear": {
+    "accuracy": 1.0,
+    "loss": 0.001841942430473864,
+    "passed": true
+  },
+  "hybrid": {
+    "accuracy": 1.0,
+    "loss": 0.00193528993986547,
+    "passed": true
+  },
+  "fixed_half_hybrid": {
+    "accuracy": 1.0,
+    "loss": 0.00212888908572495,
+    "passed": true
+  },
+  "forced_gru_hybrid": {
+    "accuracy": 1.0,
+    "loss": 0.0018583649070933461,
+    "passed": true
+  },
+  "forced_linear_hybrid": {
+    "accuracy": 1.0,
+    "loss": 0.001609022612683475,
+    "passed": true
+  },
+  "random_fusion_hybrid": {
+    "accuracy": 1.0,
+    "loss": 0.002085726475343108,
+    "passed": true
+  },
+  "scalar_fusion_hybrid": {
+    "accuracy": 1.0,
+    "loss": 0.002012968296185136,
+    "passed": true
+  },
+  "param_matched_gru": {
+    "accuracy": 1.0,
+    "loss": 0.0007097985944710672,
+    "passed": true
+  },
+  "dual_state_hybrid": {
+    "accuracy": 1.0,
+    "loss": 0.0005175753613002598,
+    "passed": true
+  },
+  "smoothed_gru": {
+    "accuracy": 1.0,
+    "loss": 0.002056634984910488,
+    "passed": true
+  }
+}

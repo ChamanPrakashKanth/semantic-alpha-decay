@@ -1,0 +1,44 @@
+{
+  "0": {
+    "iid": {
+      "both_correct": 2,
+      "both_wrong": 471,
+      "gru_correct_linear_wrong": 21,
+      "gru_wrong_linear_correct": 18,
+      "p_linear_correct_given_gru_wrong": 0.03680981595092025,
+      "p_gru_correct_given_linear_wrong": 0.042682926829268296,
+      "prediction_disagreement": 0.90234375,
+      "oracle_accuracy": 0.080078125
+    },
+    "noise_ood": {
+      "both_correct": 2,
+      "both_wrong": 480,
+      "gru_correct_linear_wrong": 12,
+      "gru_wrong_linear_correct": 18,
+      "p_linear_correct_given_gru_wrong": 0.03614457831325301,
+      "p_gru_correct_given_linear_wrong": 0.024390243902439025,
+      "prediction_disagreement": 0.89453125,
+      "oracle_accuracy": 0.0625
+    },
+    "length_ood": {
+      "both_correct": 3,
+      "both_wrong": 461,
+      "gru_correct_linear_wrong": 26,
+      "gru_wrong_linear_correct": 22,
+      "p_linear_correct_given_gru_wrong": 0.045548654244306416,
+      "p_gru_correct_given_linear_wrong": 0.053388090349075976,
+      "prediction_disagreement": 0.91796875,
+      "oracle_accuracy": 0.099609375
+    },
+    "combined_ood": {
+      "both_correct": 3,
+      "both_wrong": 467,
+      "gru_correct_linear_wrong": 21,
+      "gru_wrong_linear_correct": 21,
+      "p_linear_correct_given_gru_wrong": 0.0430327868852459,
+      "p_gru_correct_given_linear_wrong": 0.0430327868852459,
+      "prediction_disagreement": 0.8984375,
+      "oracle_accuracy": 0.087890625
+    }
+  }
+}
