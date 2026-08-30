@@ -1357,5 +1357,58 @@ python autonomous_recursive_test.py --seeds 10 --k-passes 5 --competence-p 0.70
 
 See `results/controlled_competence_diagnosis.md` for the full diagnostic breakdown.
 
+---
+
+## 32. GRU + LinearSmooth Hybrid Benchmark
+
+The repository also contains a controlled test of whether a recurrent cell that
+fuses standard GRU dynamics with a one-gate adaptive LinearSmooth update can
+improve bounded-state relation-chain processing.
+
+Implemented comparisons include GRU, LinearSmooth, learned internal fusion,
+fixed and forced fusion gates, a parameter-matched GRU, DualStateHybrid,
+SmoothedGRU, and external probability/logit ensembles. Training uses identical
+minibatches across models, while evaluation records paired results,
+complementarity, oracle headroom, rescue/damage accounting, latency, and fusion
+gate diagnostics.
+
+### Shortcut finding and corrected smoke result
+
+The initial shuffled-edge dataset was invalid as a reasoning benchmark. With
+only two or three true edges, selecting the first or last displayed destination
+reached roughly 36–38% IID accuracy despite performing no composition.
+
+The corrected generator adds unreachable camouflage edges so every entity
+appears once as a destination. This reduced destination-position heuristics to
+approximately the 24-class chance level while preserving one unique path from
+the query.
+
+On the corrected one-seed, 120-step smoke run, class chance was 4.17%:
+
+| Evaluation | GRU | LinearSmooth | Hybrid | Parameter-matched GRU | Probability ensemble |
+|---|---:|---:|---:|---:|---:|
+| IID | 4.49% | 3.91% | 3.91% | 3.71% | 3.91% |
+| Noise OOD | 2.73% | 3.91% | 4.49% | 3.71% | 3.52% |
+| Length OOD | 5.66% | 4.88% | 5.27% | 3.71% | 5.27% |
+| Combined OOD | 4.69% | 4.69% | 4.10% | 2.93% | 4.49% |
+
+The Hybrid fusion gate did not collapse (mean $\lambda \approx 0.499$), but no
+trainable model cleared a conservative chance band. Consequently, these
+relative rankings are sampling noise and do not support an architectural gain.
+A costly multi-seed benchmark should follow only after the shortcut-resistant
+task demonstrates a genuine learning signal.
+
+### Reproduction
+
+```bash
+python -m pip install -r gru_linear_small_model/requirements.txt
+python -m pytest gru_linear_small_model/tests -q
+python -m gru_linear_small_model.check_overfit
+python -m gru_linear_small_model.run_experiment --preset smoke --output gru_linear_small_model/results/smoke_balanced
+```
+
+See `gru_linear_small_model/README.md` for the larger exploratory and serious
+presets. Raw measurements, plots, and the generated diagnosis are preserved in
+`gru_linear_small_model/results/smoke_balanced/`.
 
 
