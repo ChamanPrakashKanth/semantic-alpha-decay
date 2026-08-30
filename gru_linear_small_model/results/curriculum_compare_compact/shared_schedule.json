@@ -1,0 +1,31 @@
+{
+  "controller": "gru_validation_only",
+  "shared_batches": true,
+  "seed": 0,
+  "stages": [
+    {
+      "stage": 0,
+      "name": "one_hop_ordered",
+      "steps_used": 150,
+      "training_stream_seed": 20000,
+      "first_batch_fingerprint": "727e07126fcfb290",
+      "advanced": true
+    },
+    {
+      "stage": 1,
+      "name": "two_hop_ordered",
+      "steps_used": 50,
+      "training_stream_seed": 20001,
+      "first_batch_fingerprint": "5e85636892675341",
+      "advanced": true
+    },
+    {
+      "stage": 2,
+      "name": "two_three_partial_shuffle",
+      "steps_used": 350,
+      "training_stream_seed": 20002,
+      "first_batch_fingerprint": "9006e9eb5f0dd0ee",
+      "advanced": false
+    }
+  ]
+}

@@ -1411,4 +1411,24 @@ See `gru_linear_small_model/README.md` for the larger exploratory and serious
 presets. Raw measurements, plots, and the generated diagnosis are preserved in
 `gru_linear_small_model/results/smoke_balanced/`.
 
+### Low-compute curriculum boundary
+
+A follow-up run compared only GRU and Hybrid in one shared-batch curriculum to
+fit small-machine constraints. GRU validation controlled advancement, so both
+models received the same number of updates and identical examples.
+
+Both models mastered stage 0 (ordered one-hop) and stage 1 (ordered two-hop).
+They stopped at stage 2 (partially shuffled two-to-three-hop): GRU reached
+75.00% and Hybrid 75.39%, below the 85% gate. More importantly, transfer to the
+unchanged corrected development probe remained at chance—4.10% for GRU and
+5.66% for Hybrid after 550 shared steps. The Hybrid's mean fusion gate was
+0.506, which is not routing evidence at chance-level transfer.
+
+```bash
+python -m gru_linear_small_model.curriculum_compare
+```
+
+The compact report and checkpoint are in
+`gru_linear_small_model/results/curriculum_compare_compact/`. The corrected
+test seed remains untouched.
 

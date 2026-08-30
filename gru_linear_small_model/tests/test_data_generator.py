@@ -56,3 +56,22 @@ def test_destination_balancing_removes_candidate_position_shortcut():
     # Sampling noise around 1/24; this bound is intentionally generous.
     assert first_correct / trials < 0.065
     assert last_correct / trials < 0.065
+
+
+def test_curriculum_order_and_partial_destination_coverage():
+    generator = RelationChainGenerator(24, 44, balance_destinations=False)
+    ordered = generator.sample_example(3, 0, edge_order="ordered", destination_coverage=0)
+    node = ordered.query
+    for src, dst in ordered.edges:
+        assert src == node
+        node = dst
+    assert node == ordered.target
+
+    partial = generator.sample_example(3, 0, edge_order="shuffled", destination_coverage=12)
+    destinations = [dst for _, dst in partial.edges]
+    assert len(destinations) == 12
+    assert len(set(destinations)) == 12
+    assert partial.target in destinations
+
+    full = generator.sample_example(3, 0, edge_order="shuffled", destination_coverage=24)
+    assert sorted(dst for _, dst in full.edges) == list(range(24))

@@ -1,0 +1,4 @@
+stage,name,steps_used,advanced,gru_stage_accuracy,hybrid_stage_accuracy,gru_corrected_accuracy,hybrid_corrected_accuracy,hybrid_mean_lambda
+0,one_hop_ordered,150,True,1.0,0.97265625,0.041015625,0.05078125,0.5470054745674133
+1,two_hop_ordered,50,True,1.0,1.0,0.041015625,0.041015625,0.5751475095748901
+2,two_three_partial_shuffle,350,False,0.75,0.75390625,0.041015625,0.056640625,0.5063183903694153

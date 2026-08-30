@@ -41,3 +41,23 @@ The generator adds unreachable camouflage edges so that every entity appears
 exactly once as an edge destination before nominal noise is added. This is a
 necessary shortcut control: with only a 2–3 edge chain, choosing a displayed
 destination scores 33–50% despite doing no composition.
+
+## Low-compute curriculum comparison
+
+To locate the learnability boundary without running the full model suite, train
+only GRU and Hybrid together. Both consume the same batch at every step; GRU
+validation controls the shared stage transitions.
+
+```powershell
+python -m gru_linear_small_model.curriculum_compare
+```
+
+The compact seed-0 run used 24-dimensional states, batch size 32, and stopped
+after 550 shared steps. Both models mastered one-hop and ordered two-hop chains.
+At partially shuffled two-to-three-hop chains, GRU reached 75.00% and Hybrid
+75.39%, below the 85% advancement gate. Corrected-development performance
+remained at chance (GRU 4.10%, Hybrid 5.66%), so the run stopped before the
+expensive stages. The reserved corrected test seed was not evaluated.
+
+See `results/curriculum_compare_compact/diagnosis.md` and
+`results/curriculum_compare_compact/comparison_report.json`.
